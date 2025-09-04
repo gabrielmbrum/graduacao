@@ -60,7 +60,7 @@ process Merge()
 	receive in1(v1);
 	receive in2(v2);
 	
-	while (!emtpy(v1) && !empty(v2))
+		while (!emtpy(in1) && !empty(in2 ))
 	{
 		if (v1 < v2)
 		{
@@ -133,4 +133,93 @@ process Merge()
 		}
 	}
 }	
+```
+
+### problema do barbeiro dorminhoco
+
+```c
+chan req(int), talk(int), cli[N](int);
+
+#define pode_sentar 1
+#define flw 2
+
+process Barber {
+	int who, val;
+	while (true) {
+		receive req(who);
+		send cli[who](pode_sentar);
+		receive talk(val); -> *
+		corta_pros_dois_lados();
+		send cli[who](flw);
+		receive talk(val);
+		
+	}
+}
+
+process Clients[i=1 to N] {
+	while (true) {
+		int val;
+		send req(i);
+		receive cli[i](val);
+		send talk(val);
+		receive cli[i](val);
+		send talk(val);
+	}
+}
+```
+
+o canal talk pode ser compartilhado, pois ele é restrito por `receive cli[i](val)`
+ele só envia no talk após o barbeiro chamar ele pra sentar
+
+o * no Barber é pra indicar que não pode ser `receive cli[who](val)`, pois tem o risco do barbeiro falar com ele mesmo (ele faz o send e recebe logo em seguida no receive), então é necessário utilizar o canal talk
+
+### problema do produtor consumidor
+
+**versão síncrona**
+```c
+chan produto(int);
+
+process Consumer {
+	int produz_pro_pai = 1;
+	while (true) {
+		receive canal(val);
+		receive canal(val);
+		consome();
+	}
+
+}
+
+process Producer {
+	int eh_papai;
+	while (true) {
+		sync_send canal(eh_papai);
+		produz()
+		send_sync canal(eh_papai);
+	}
+
+}
+```
+
+podemos trocar o segundo `receive canal` do Consumer, pelo `segundo send` de Producer, pois é uma comunicação síncrona, onde não tem como alguém que envia ler a própria mensagem
+
+**versão assíncrona**
+```c
+chan vazio(int), cheio(int);
+
+process prod{
+	while (true) {
+		receive vazio(val);
+		produz();
+		send cheio(val);
+	}
+}
+
+process cons{
+	send vazio(val);
+	while (true) {
+		receive cheio(val);
+		consome();
+		send vazio(val);
+	}	
+}
 ```
