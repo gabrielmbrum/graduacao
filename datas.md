@@ -21,4 +21,8 @@ seminário - 30/10 | 06 e 13/11
 
 ### otimização linear
 
+p1 -> 30/09
+p2 -> 25/11
+sub -> 02/12
+
 ### llm
