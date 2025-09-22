@@ -1,4 +1,5 @@
 
+# ALEARDO
 dado um monitor X, só existe uma entrada para o monitor, logo, só um processo consegue acessar o monitor por vez (uma requisição por vez)
 
 dentro do monitor existem *N* funções
@@ -84,7 +85,7 @@ monitor Semaphore{
 esta solução, apesar de correta, não garante o melhor atendimento numa política SC. para também obter isso podemos modificar o monitor para:
 ```
 monitor FIFOSemaphore{
-	int s = 0;
+	int s = 1;
 	cond pos;
 	
 	procedure Psem(){
@@ -102,4 +103,6 @@ monitor FIFOSemaphore{
 	}
 }
 ```
+
+
 
