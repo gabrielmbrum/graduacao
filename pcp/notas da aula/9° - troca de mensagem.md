@@ -1,5 +1,4 @@
 
-
 uso de **threads não é viável** para interação entre processos quanto o **paralelismo** ocorrer usando **sistemas multicomputadores**
 
 utiliza-se uma interação no modelo cliente-servidor

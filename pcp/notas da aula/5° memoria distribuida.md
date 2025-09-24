@@ -60,7 +60,7 @@ process Merge()
 	receive in1(v1);
 	receive in2(v2);
 	
-		while (!emtpy(in1) && !empty(in2 ))
+	while (!emtpy(in1) && !empty(in2 ))
 	{
 		if (v1 < v2)
 		{

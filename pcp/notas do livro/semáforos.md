@@ -95,20 +95,46 @@ a solução é criar um mutex para cada processo:
 
 ### 4. readers and writers
 
+#### 4.1 problema de exclusão
+![[fig 4.8.png]]
+
+![[fig 4.9.png]]
+
+#### 4.2 usando sincronização condicional
+
+![[fig 4.10.png]]
+
+#### 4.3 a técnica de passar o bastão
+
+**declarações atômicas**
+
+B é uma expressão booleana e S é uma lista de expressões
+><await (B) S;>
+
+S é executado de modo exclusivo
+><S;>
+
+![[fig 4.11.png]]
+
+![[fig 4.13.png]]
+
+
 ```
 int nr = 0, nw = 0, dr = 0, dw = 0;
 
 // dr = delayed reader || dw = delayed writer
 
-sem e = 1, r = 0, w = 0;
+sem e = 1, // controla a entrada em regiões críticas
+	r = 0, //usado para atrasar readers
+	w = 0; //usado para atrasar escritores
 
 process Writer[j=1 to N] {
 	while(true) {
 		P(e);
 		if (nr > 0 or nw > 0) {
-			dw = dw + 1;
+			dw++;
 			V(e);
-			P(e);
+			P(w);
 		}
 		nw = nw + 1;
 		V(e);
@@ -125,8 +151,7 @@ process Writer[j=1 to N] {
 			dw = dw - 1;
 			V(w);
 		}
-		else
-			V(e);
+		else V(e);
 	}
 }
 
@@ -143,9 +168,7 @@ process Reader[i=1 to M] {
 			dr = dr - 1;
 			V(r);
 		}
-		else {
-			V(e);
-		}
+		else V(e);
 
 		leitura;
 
