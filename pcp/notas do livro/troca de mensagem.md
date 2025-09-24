@@ -101,12 +101,115 @@ monitor Mname {
 
 $MI$ é a invariante do monitor (predicado que especifíca os estados das variávies permanentes quando nenhuma chamada está ativa)
 
+para simular um monitor usando troca de mensagem, as variáveis viram as variáveis do server, ele inicializa elas e fica num loop servindo chamadas de `op`
+
+![[fig 7.4.png]]
+
+exemplo de cliente/servidor com múltiplas operações;
+![[fig 7.5.png]]
 
 
+### obs
 
+o aleardo não passou tudo deste capítulo, então abaixo segue as implementações de exercícios que ele passou na aula (ao invés de dar o restante do conteúdo do capítulo)
 
+---
+### problema do barbeiro dorminhoco
 
+```c
 
+chan cli[N] (int clientId);
+chan barber (int clienteId);
+chan cadeira (int salve);
 
+process Barber {
+	int cliente_id;
+	int buff;
+	
+	while (true) {
+	
+		while(empty(cli)) // espera ser acordado
+			dorme();
+			
+		receive barber(cliente_id); //recebe cliente
+		send cli[cliente_id](1); // chama para sentar
+		
+		receive cadeira(buff); //espera sentar
+		
+		corta_cabelo();
+		
+		send cli[cliente_id](1); //avisa que acabou corte
+		receive cadeira(buff);
+	
+	}
+	
+	
+}
 
+process Client[i = 0 to N] {
+	int salve;
+	
+	send barber(i); //avisa que chegou
+	receive cli[i](salve); //espera ser chamado
+	senta();
+	send cadeira(salve); //avisa que sentou
+	receive cli[i](salve);
+	levanta();
+	send cadeira(salve); //avisa que saiu da cadeira
+	
+	
+}
 
+```
+
+### problema do produtor consumidor
+
+introdução de nova sintaxe -> `sync_send` -> faz envio sincrono
+
+```c
+chan market_place(string msg);
+
+process Producer() {
+	while (true) {
+		sync_send market_place("me receba se quiser consumir algo");
+		produz();
+		sync_send market_place("ta feito meu campeão");
+	}
+}
+
+process Consumer() {
+	string buffer;
+	while (true) {
+		receive market_place(buffer);
+		receive market_place(buffer);
+		consome();
+	}
+}
+```
+
+agora, a versão assíncrona do problema
+```c
+chan prod(string), cons(string);
+
+process Consumer() {
+	string buff;
+	while (true) {
+		receive prod(buff);
+		send cons("quero consumir");
+		receive prod(buff);
+		consome();
+		send cons("esta consumido bb");
+	}
+}
+
+process Producer() {
+	string buff;
+	while (true) {
+		send prod("alguem quer consumir?");
+		receive cons(buff);
+		produz();
+		send prod("ta pronto meu rei");
+		receive cons(buff); //espera consumir o produto
+	}
+}
+```
