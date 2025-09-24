@@ -68,7 +68,7 @@ process Sort {
 }
 ```
 
-#### rede merge
+#### 2.1 rede merge
 
 a ideia é juntar duas listas ordenadas em uma lista única ordenada
 
@@ -76,8 +76,30 @@ cada filtro merge recebe valores de duas entradas ordenadas `in1` e `in2` e prod
 
 o fim das streams de entrada são marcadas por um EOS (end of stream)
 
-primeira implementação:
+implementação:
 ![[fig 7.2.png]]
+
+### 3. clientes e servidores
+
+servidor é um processo que repetidamente lida com solicitações de processos clientes
+
+#### 3.1 monitores ativos
+
+monitor é um gerenciador de recursos
+
+inicialmente, assume-se esta estrutura de monitor
+```
+monitor Mname {
+	declaração de variáveis permanentes;
+	inicialização do código;
+	
+	procedure op(formals) {
+		body of op;
+	}
+}
+```
+
+$MI$ é a invariante do monitor (predicado que especifíca os estados das variávies permanentes quando nenhuma chamada está ativa)
 
 
 
