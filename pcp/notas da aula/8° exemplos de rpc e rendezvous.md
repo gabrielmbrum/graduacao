@@ -38,8 +38,8 @@ body
 
 ```c
 FileCache
-	opread(int count; result char buffer[*]);
-	opwrite(int count; char buffer[});
+	op read(int count; result char buffer[*]);
+	op write(int count; char buffer[});
 body
 	cache de blocos de arquivos
 	variáveis para descritores de arquivos
@@ -76,7 +76,7 @@ module Merge[i=1 to n]
 body
 	int v1,v2;
 	cap stream out;
-	sem empty = 1, full1 = 0, empty2 = 1, full 2 = 0;
+	sem empty = 1, full1 = 0, empty2 = 1, full2 = 0;
 	proc initialize(output){
 		out = output;
 	}

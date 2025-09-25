@@ -67,7 +67,7 @@ a exclusão mútua em monitores é gerada implicitamente e sincronização condi
 `processo`
 - um processo de um montor é chamado por um processo externo
 - ele é ativo caso algum processo esteja executando um procedimento
-- no máximo uma instância de monitor está ativa por vez 
+- no máximo uma instância de procedimento de monitor está ativa por vez 
 
 #### 1.2 variáveis de condição
 
@@ -117,6 +117,8 @@ P2 -> Psem (regiao ja ta com P1) -> fica no while
 
 P1 -> Vsem -> s++ -> s == 1 -> troca de processo em CPU
 
+P2 -> é acordado -> vai pra condição do while -> troca pra um P3
+
 P3 -> Psem -> s == 1 -> 
 
 
@@ -157,6 +159,12 @@ P4 -> Psem -> wait(pos)
 
 P2 -> awakened -> faz oq precisa -> V(sem)
 
+
+problemas gutias
+1. P1 - Psem s = 0
+2. P2 - Psem -> ta na wait (dormiu by carlos)
+3. P1 - Vsem
+4. P3 - Psem -> s = 0 -> vai dormir atras do P2
 ### 2. técnicas de sincronização
 
 #### 2.1 bounded buffers: sincronização de condição básica

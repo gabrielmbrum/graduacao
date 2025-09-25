@@ -104,6 +104,56 @@ body
 end TimeServer
 ```
 
+#### 1.4 uma rede de ordenação merge 
+
+RPC é esquisito para filtros ou *interacting peers*
+
+um filtro merge consome dois fluxos de entradas e produz um fluxo de saída, cada entrada já está organizada, a tarefa do filtro é juntar os valores das entradas para produzir uma única saída ordenada
+
+RPC não suporta uma comunicação direta entre processos, 
+
+```c
+optype stream = (int); 
+
+module Merge[i = 1 to n]
+	op in1 stream, in2 stream;
+	op initialize(cap stream);
+body
+	int v1, v2;
+	cap stream out;
+	sem empty1 = 1, full1 = 0, empty2 = 1, full2 = 0;
+	
+	proc initialize(output) {
+		out = output;
+	}
+	
+	proc in1(value1) {
+		P(empty1); v1 = value1; V(full);
+	}
+	
+	proc in2(value2) {
+		P(empty), v2 = value2; V(full2);
+	}
+	
+	process M {
+		P(full1); P(full2);
+		while (v1 != EOS and v2 != EOS)
+			if (v1 <= v2)
+				{ call out(v1), V(empty1); P(full1);}
+			else 
+				{ call out(v2), V(empty2); P(full2);}
+				
+		if (v1 == EOS)
+			while (v2 != EOS)
+				{ call out(v2); V(empty2); P(full2); }
+		else
+			while (v1 != EOS)
+				{ call out(v1), V(empty1); P(full1);}
+		call out(EOS);
+	}
+end Merge
+```
+
 ---
 
 ### 2. rendezvous
@@ -144,7 +194,7 @@ o **guarda** é a parte antes de '->', cada guarda contém o nome de uma operaç
 ##### bounded buffer
 deseja-se um processo que tenha um buffer local de $n$ items de dados e que serve duas operações `deposit` e `fetch` 
 
-```
+```c
 module BoundedBuffer
 	op deposit(typeT), fetch(result typeT);
 
@@ -171,7 +221,7 @@ comparando com a implementação de monitores ([[fig 5.4 book.png]]), os procedi
 
 ##### filósofos famintos
 
-```
+```c
 module Table
 	op getforks(int), relforks(int);
 	
@@ -198,7 +248,7 @@ process Philosopher[i = 0 to N] {
 
 ##### time server
 
-```
+```c
 module TimeServer
 	op get_time(int) returns int;
 	op delay(int), tick();
@@ -207,7 +257,7 @@ body
 	process Timer {
 		int tod = 0;
 		while (true) {
-			tod++;
+			// tod++;
 			in get_time(time) returns time -> time = tod;
 			[] delay(waketime) and waketime <= tod -> skip;
 			[] tick() -> {tod++; restart timer;}
@@ -222,8 +272,8 @@ tick() é chamada pelo *clock interrupter handler*
 get_time e delay é chamda pelos clientes
 
 ##### allocador SJN (Shortest Job Next)
-
-```
+ 
+```c
 module SJN_Allocator
 	op request(int time), release();
 
@@ -237,8 +287,7 @@ body
 		}
 	}
 end SJN_Allocator
+```
 
-
-
-
+### merge
 
