@@ -109,6 +109,17 @@ SC é não-preemptivo e SW é preemptivo
 
 ![[figure 5.2 book.png]]
 
+s = 1
+
+P1 -> Psem -> s == 0 -> pego a regiao critica 
+
+P2 -> Psem (regiao ja ta com P1) -> fica no while
+
+P1 -> Vsem -> s++ -> s == 1 -> troca de processo em CPU
+
+P3 -> Psem -> s == 1 -> 
+
+
 o inteiro $s$ representa o valor do semáforo
 
 $Psem$ -> espera até que $s$ seja positivo, então decrementa de $s$ 
@@ -138,7 +149,7 @@ P1 -> Psem -> s = s - 1 -> s = 0
 
 P2 -> Psem -> wait (pos)
 
-P1 -> Vsem -> singal(pos)
+P1 -> Vsem -> signal(pos)
 
 P3 -> Psem -> wait(pos) {ele fica depois do P2 na fila}
 
