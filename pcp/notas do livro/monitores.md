@@ -187,7 +187,8 @@ a sincronização proíbe um depósito em uma fila cheia e uma busca em fila vaz
 
 escritores precisam de acesso exclusivo
 
-**signal_all(cond)**
+>**signal_all(cond)**
+
 essa função sinaliza a todos que esperavam a condicional 
 
 ```
@@ -222,27 +223,92 @@ monitor RW_Controller () {
 
 #### 2.3 Shortest-Job-Next Allocation: priority way
 
-**wait(cv, rank)**
+>**wait(cv, rank)**
+
 atrasa processos em uma ordem ascendente ao rank (do menor pro maior)
 ![[fig 5.6 book.png]]
 
+----
+
+### exerícios possíveis/antigos do aleardo
+
 ```
-monitor Jantar_Controller () {
-
-	cond oktoeat[n];
-	boolean eating[n];
-	
-	procedure request_fork(i) {
-		await(oktoeat[i]);
-		eating[i] = true;
-	}
-	
-	
-	procedure release_fork(i) {
-		signal(oktoeat[i]);
-		signal(oktoeat[right(i)]);
-		eating[i] = true;
-	}
-
+monitor jantar{
+    int n = 5;
+    cond philosofers[n]
+    bool eating[n] = ([n] false);
+    
+    procedure getForks(int i){
+            while(eating[left(i)] or eating[right(i)])
+                wait(philosofers[i]);
+            eating[i] = true;
+    }
+    
+    procedure relForks(int i){
+        eating[i] = false;
+        if(!empty(philosofers[right(i)])){   
+            signal(philosofers[right]);
+        }
+        if (!empty(philosofers[left(i)])) {
+	        signal(philosofers[left]);
+        }
+    }
 }
 ```
+
+```c
+monitor MProdCons
+	int estoque_max;
+	cond nao_cheio, nao_vazio;
+	int estoque[estoque_max];
+	int qtd_produzida = 0,
+		primeiro_idx_vazio = 0,
+		primeiro_idx_cheio = 0;
+	
+	sem mutex = 1;
+	
+	procedure Produzir() {
+		while (qtd_produzida == estoque_max)
+			wait(nao_cheio)
+			
+		
+		P(mutex);
+		estoque[primeiro_idx_vazio] = data;
+		primeiro_idx_vazio = (primeiro_idx_vazio + 1) % estoque_max;
+		qtd_produzida++;
+		V(mutex)
+		
+		signal(nao_vazio);
+	}
+	
+	procedure Consumir() {
+		while (qtd_produzida == 0)
+			wait(nao_vazio);
+			
+		P(mutex);
+		data = estoque[primeiro_idx_cheio]
+		primeiro_idx_cheio = (primeiro_idx_cheio + 1) % estoque_max;
+		qtd_produzida--;
+		V(mutex);
+		
+		signal(nao_cheio);
+	}
+}
+
+process produtores[i=0 to N] {
+	while (true) {
+		call MProdCons.Produzir();
+	}
+}
+
+process consumidores[i=0 to M] {
+	while (true) {
+		call MProdCons.Consumir();
+	}
+}
+```
+
+produtores i = 0
+	chama produzir
+		entra no monitor
+		faz o procedimento

@@ -186,3 +186,34 @@ process Reader[i=1 to M] {
 ```
 
 com monitores é bem mais simples, a implementação está aqui -> [[monitores]]
+
+----
+
+```
+
+sem talheres[n] = ([n] )
+
+process Filosofo [i = 1 to n - 1] {
+	while (true) {
+		P(talheres(left(i)))
+		P(talherers(right))
+		
+		eat();
+		
+		V(talheres(left(i)))
+		V(talheres(right(i)))
+		
+	}
+}
+
+process UltimoFilosofo [i = n] {
+	while (true) {
+		P(talheres[right(i)])
+		P(talheres[left(i)])
+		
+		eat();
+		
+		V(talheres[right(i)])
+		V(talheres[left(i)])
+	}
+} 

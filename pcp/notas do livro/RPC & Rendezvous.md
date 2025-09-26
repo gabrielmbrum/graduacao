@@ -8,7 +8,7 @@ a novidade desses métodos é que uma operação é um canal de comunicação de
 
 o invocador ("chamador") fica em espera até a operação ser executada e os resultados serem retornados
 
-**RPC x rendezvous *(diferenças)***
+**RPC x rendezvous *(diferença)***
 a diferença é na maneira em que as chamadas aos procesos são servidas, uma delas é declarar um procedimento para cada operação e criar um novo processo para cada chamada (*remote procedure call* -> este nome é devido a possibilidade de o invocador e o corpo do procedimento estarem em máquinas diferentes), já a outra é servida por meio de uma expressão de entrada que espera por uma chamada, processa ela e retorna os resultados (*rendezvous*)
 
 ---
@@ -45,6 +45,7 @@ end
 ```
 
 a chamada de um procedimento em outro módulo é feita:
+
 >call mname.opname(args)
 
 #### 1.1 sincronização em módulos
@@ -206,12 +207,6 @@ body
 			 rear = 0, //primeira posição vazia
 			 count = 0; //qtd de items produzidos
 		while (true) {
-			/*
-			switch case(op) {
-				case deposit:
-					
-			}
-			*/
 			in deposit(item) and count < n ->
 				buf[rear] = item;
 				rear = (rear+1) % n;

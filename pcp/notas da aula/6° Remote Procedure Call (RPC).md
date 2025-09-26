@@ -45,8 +45,9 @@ body
     int tod = 0;
     sem m=1, d\[n\] = (\[n\] 0);
     <queue min_heap> (int waketime, int process_id) napQueue;
-	    proc get_time() return time 
-       { time = tod };
+    
+	proc get_time() return time { time = tod };
+    
     proc delay(int interval) 
     {
         int waketime = tod + interval;
