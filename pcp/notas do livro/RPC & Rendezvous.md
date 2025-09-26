@@ -330,3 +330,150 @@ body
 		call out(EOS);
 		end Merge	
 ```
+
+---
+### exemplos extras
+
+babuino em rendezvous
+```c
+// Constantes para representar as direções
+#define LESTE 0
+#define OESTE 1
+#define NENHUMA -1
+
+// --- O Processo Gerenciador (Servidor) ---
+process ControladorDaCorda {
+    int babuinos_na_corda = 0;
+    int direcao_atual = NENHUMA;
+    int esperando_leste = 0;
+    int esperando_oeste = 0;
+
+    while (true) {
+        // O controlador está sempre pronto para aceitar uma das três operações.
+        // A guarda 'when' controla quando a operação 'cruzar' pode ser aceita.
+        in
+            // Um babuíno anuncia sua chegada. Esta operação é sempre aceita.
+            chegar(int direcao) {
+                if (direcao == LESTE) {
+                    esperando_leste++;
+                } else {
+                    esperando_oeste++;
+                }
+            }
+        []
+            // Um babuíno pede para cruzar. Esta é a operação guardada.
+            cruzar(int direcao) when (direcao == direcao_atual) || 
+                                    (direcao_atual == NENHUMA && 
+                                    (direcao == LESTE ? esperando_oeste == 0 : esperando_leste == 0))
+            {
+                if (direcao == LESTE) {
+                    esperando_leste--;
+                } else {
+                    esperando_oeste--;
+                }
+                babuinos_na_corda++;
+                direcao_atual = direcao;
+            }
+        []
+            // Um babuíno anuncia sua partida. Esta operação é sempre aceita.
+            partir(int direcao) {
+                babuinos_na_corda--;
+                if (babuinos_na_corda == 0) {
+                    direcao_atual = NENHUMA;
+                }
+            }
+        ni; // Fim do 'in'
+    }
+}
+
+// --- O Processo Babuíno (Cliente) ---
+process Babuino[id = 0 to N] {
+    int minha_direcao = random(LESTE, OESTE);
+
+    while (true) {
+        vive_a_vida();
+
+        // 1. Anuncia a intenção de cruzar.
+        call ControladorDaCorda.chegar(minha_direcao);
+        
+        print("Babuíno ", id, " chegou para cruzar para ", minha_direcao);
+
+        // 2. Pede permissão para cruzar e bloqueia até ser aceito.
+        call ControladorDaCorda.cruzar(minha_direcao);
+
+        print("Babuíno ", id, " está na corda!");
+        cruzar_a_corda(); // Simula o tempo da travessia
+
+        // 3. Anuncia que terminou a travessia.
+        call ControladorDaCorda.partir(minha_direcao);
+
+        print("Babuíno ", id, " saiu da corda.");
+    }
+}
+```
+
+babuino em rpc
+```c
+// --- Implementação do Módulo Servidor RPC ---
+module_implementation ControladorDaCorda {
+    // Variáveis de estado encapsuladas e protegidas pelo servidor
+    int babuinos_na_corda = 0;
+    int direcao_atual = NENHUMA;
+    int esperando_leste = 0;
+    int esperando_oeste = 0;
+    cond pode_cruzar_leste, pode_cruzar_oeste;
+    mutex lock; // Trava interna para garantir exclusão mútua
+
+    // Procedimento para anunciar a chegada
+    procedure chegar(int direcao) {
+        P(lock); // Adquire a trava para acesso exclusivo
+        if (direcao == LESTE) {
+            esperando_leste++;
+        } else {
+            esperando_oeste++;
+        }
+        V(lock); // Libera a trava
+    }
+
+    // Procedimento bloqueante para esperar a vez de atravessar
+    procedure atravessar(int direcao) {
+        P(lock); // Adquire a trava
+        if (direcao == LESTE) {
+            // Espera enquanto a corda está ocupada na direção oposta
+            // ou se está livre mas há babuínos do outro lado esperando (fairness)
+            while (direcao_atual == OESTE || (direcao_atual == NENHUMA && esperando_oeste > 0)) {
+                wait(pode_cruzar_leste);
+            }
+            esperando_leste--;
+        } else { // direcao == OESTE
+            while (direcao_atual == LESTE || (direcao_atual == NENHUMA && esperando_leste > 0)) {
+                wait(pode_cruzar_oeste);
+            }
+            esperando_oeste--;
+        }
+        
+        // Permissão concedida para cruzar
+        babuinos_na_corda++;
+        direcao_atual = direcao;
+        V(lock); // Libera a trava
+    }
+
+    // Procedimento para notificar a partida
+    procedure partir(int direcao) {
+        P(lock); // Adquire a trava
+        babuinos_na_corda--;
+
+        // Se foi o último a sair, acorda quem estiver esperando
+        if (babuinos_na_corda == 0) {
+            direcao_atual = NENHUMA;
+            // Lógica de fairness para dar a vez ao outro lado
+            if (esperando_oeste > 0) {
+                signal_all(pode_cruzar_oeste);
+            } else if (esperando_leste > 0) {
+                signal_all(pode_cruzar_leste);
+            }
+        }
+        V(lock); // Libera a trava
+    }
+}
+```

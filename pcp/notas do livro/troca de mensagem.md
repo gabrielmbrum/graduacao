@@ -164,7 +164,7 @@ process Client[i = 0 to N] {
 ```
 
 versão síncrona
-```
+```c
 chan cli(string msg);
 chan bar(int buff);
 chan cadeira(int buff);
@@ -175,24 +175,26 @@ chan cadeira(int buff);
 process Barber() {
 	int buff;
 	while (true) {
-		receive bar(buff);
+		receive bar(buff); //espera um cliente chegar
 		
-		sync_send cli("senta aqui");
+		sync_send cli("senta aqui"); //avisa pra sentar e espera sentar
 		corta();
-		sync_send cli("cortei ja");
-		receive cadeira(buff)
+		sync_send cli("cortei ja"); //avisa que cortou e espera o cliente ouvir
+		
+		receive cadeira(buff); //espera o cliente levantar
 	}
 }
 
-process Client() {
+process Client [i=0 to N] {
 	string buff;
 	while (true) {
-		sync_send bar(CHEGUEI);
+		sync_send bar(CHEGUEI); //avisa que chegou e e espera ser recebido
 		
-		receive cli(buff);
-		receive cli(buff);
-		
-		sync_send cadeira(LEVANTEI)
+		receive cli(buff); //espera ser chamado para sentar
+		talk();
+		receive cli(buff); //espera ser avisado que acabou o corte
+	
+		send cadeira(LEVANTEI); //avisa que levantou
 	}
 }
 
@@ -248,3 +250,44 @@ process Producer() {
 	}
 }
 ```
+
+barbeiro dorminhoco com múltiplos barbeiros
+```c
+
+chan cli[N], bar[M], cadeira[M];
+
+process Barber[id_barber=0 to M] {
+	int who;
+	while (true) {
+		//precisa ser acordado por qualquer cliente
+		receive bar[id_barber](who);
+		sync_send cli[who](id_barber); //vem sentar
+
+		receive cadeira[id_baber]
+		
+		corta();
+		
+		sync_send cli[who][id_barber]//sai da cadeira puta
+		
+		receive cadeira[id_barber] // ta livre dnv
+	}
+}
+
+process Cliente[id_cli=0 to N] {
+	int who;
+	
+	while (empty cli[id_cli]())
+		for (int j = 0; j < M; j++)
+			send bar[c];
+	}
+	receive cli[id_cli](who);
+	
+	sync_send cadeira[who]("vou sentar"); //espera o barbeiro deixar ele sentar
+	
+	receive cli[id_cli](who) // saindio
+	
+	sync_send cadeira[who](id_cli) // ta livre	
+}
+
+```
+

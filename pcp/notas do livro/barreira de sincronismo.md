@@ -93,8 +93,8 @@ por exemplo, deixemos cada processo ter uma flag que seta quando chega na barrei
 considerando W[i] e W[j] dois processos
 ```c
 /* barreira para o trabalhador W[i]*/
-<await (arrive[i] == 0);>
-arrive[i] = 1;
+<await (arrive[i] == 0); {arrive[i] = 1; x++} >
+
 <await (arrive[j] == 1); >
 arrive[j] = 0;
 
