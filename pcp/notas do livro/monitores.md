@@ -9,7 +9,7 @@ um monitor contém variáveis que armazenam estados de objetos e procedimentos q
 
 **exclusão mútua** é adquirida implicitamente, pela garantia de que os procedimentos no mesmo monitor não são executados concorrentemente
 
-exisrtem dois tipos de módulos: processos ativos e monitores pacivos
+existem dois tipos de módulos: processos ativos e monitores pacivos
 
 assume-se todas as variáveis dentro dos monitores, logo dois processos interagem no mesmo monitor
 
@@ -47,9 +47,9 @@ opname é o nome da operação
 
 **2° propriedade**
 
-declarações dentro do monitor (declarção de inicialização e internas aos procedimentos) podem não acessar variáveis declaradas fora do monitor
+declarações dentro do monitor (declaração de inicialização e internas aos procedimentos) podem não acessar variáveis declaradas fora do monitor
 
-**3° propriedade **
+**3° propriedade**
 
 variáveis permanentes são inicializadas antes de que qualquer procedimento ser chamado, logo, a inicialização é feita assim que o monitor é criado
 
@@ -57,12 +57,12 @@ variáveis permanentes são inicializadas antes de que qualquer procedimento ser
 
 um monitor pode ser desenvolvido em um isolamento relativo, o programador não sabe a ordem que os procedimentos serão chamados, logo não se pode desenvolver algo que dependa da ordem de execução
 
-um monitor invariante é um predicato que especifica estados razoáveis para as variáveis permanentes quando nenhum processo está acessando elas (um código de inicializaçaõ precisa definir um invariante)
+a invariante monitor é um predicato que especifica estados razoáveis para as variáveis permanentes quando nenhum processo está acessando elas (um código de inicializaçaõ precisa definir um invariante)
 
 
 #### 1.1 exclusão mútua
 
-a exclusão mútua em monitores é gerada implicitamente e sincronização condiionalç é programada por variávies de condições
+a exclusão mútua em monitores é gerada implicitamente e sincronização condicional é programada por variávies de condições
 
 `processo`
 - um processo de um montor é chamado por um processo externo
@@ -109,9 +109,13 @@ SC é não-preemptivo e SW é preemptivo
 
 ![[figure 5.2 book.png]]
 
+P1 -> Psem -> s == 0
+P2 -> Psem -> wait
+P1 -> Vsem -> s == 1 -> Psem -> pega a regiao dnv
+
 s = 1
 
-P1 -> Psem -> s == 0 -> pego a regiao critica 
+P1 -> Psem -> s != 0 -> s-- -> pego a regiao critica 
 
 P2 -> Psem (regiao ja ta com P1) -> fica no while
 
@@ -222,4 +226,23 @@ monitor RW_Controller () {
 atrasa processos em uma ordem ascendente ao rank (do menor pro maior)
 ![[fig 5.6 book.png]]
 
+```
+monitor Jantar_Controller () {
 
+	cond oktoeat[n];
+	boolean eating[n];
+	
+	procedure request_fork(i) {
+		await(oktoeat[i]);
+		eating[i] = true;
+	}
+	
+	
+	procedure release_fork(i) {
+		signal(oktoeat[i]);
+		signal(oktoeat[right(i)]);
+		eating[i] = true;
+	}
+
+}
+```

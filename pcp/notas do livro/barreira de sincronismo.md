@@ -19,11 +19,12 @@ assuma que tem-se $n$ processos de trabalhadores que precisam se encontrar numa 
 ```
 int count = 0;
 
-process Worker[i  = 1 to n] {
+process Worker[i = 1 to n] {
 	while (true) {
 		code to implement task i;
-	< count++; >
-	< await (count == n); >
+		< count++; >
+		< await (count == n); >
+		// zerar
 	}	
 }
 ```
@@ -33,7 +34,7 @@ quando atinge-se o limiar $count == n$ precisa-se garantir que ninguém incremen
 
 a solução é ter um coordenador, o trabalhador vai sinalizar que chegou `arrive[i] = 1` e vai ficar esperando `await(continue[i] == n)` 
 
-o array continue fica de responsabilidade do coordenador, que setará como 1 toda as posições assim que todos os trabalhadores tiverem chego
+o array continue fica de responsabilidade do coordenador, que setará como 1 toda as posições assim que todos os trabalhadores tiverem chego\
 
 ### 2 flags e coordenadores
 

@@ -128,27 +128,27 @@ body
 	}
 	
 	proc in1(value1) {
-		P(empty1); v1 = value1; V(full);
+		P(empty1); v1 = value1; V(full1);
 	}
 	
 	proc in2(value2) {
-		P(empty), v2 = value2; V(full2);
+		P(empty2), v2 = value2; V(full2);
 	}
 	
 	process M {
 		P(full1); P(full2);
 		while (v1 != EOS and v2 != EOS)
 			if (v1 <= v2)
-				{ call out(v1), V(empty1); P(full1);}
+				{ call out(v1); V(empty1); P(full1);}
 			else 
-				{ call out(v2), V(empty2); P(full2);}
+				{ call out(v2); V(empty2); P(full2);}
 				
 		if (v1 == EOS)
 			while (v2 != EOS)
 				{ call out(v2); V(empty2); P(full2); }
 		else
 			while (v1 != EOS)
-				{ call out(v1), V(empty1); P(full1);}
+				{ call out(v1); V(empty1); P(full1);}
 		call out(EOS);
 	}
 end Merge
@@ -196,13 +196,22 @@ deseja-se um processo que tenha um buffer local de $n$ items de dados e que serv
 
 ```c
 module BoundedBuffer
-	op deposit(typeT), fetch(result typeT);
+	op deposit(typeT);
+	op fetch(result typeT);
 
 body
 	process Buffer {
 		typeT buf[n];
-		int front = 0, rear = 0, count = 0;
+		int front = 0, //primeira posição com item
+			 rear = 0, //primeira posição vazia
+			 count = 0; //qtd de items produzidos
 		while (true) {
+			/*
+			switch case(op) {
+				case deposit:
+					
+			}
+			*/
 			in deposit(item) and count < n ->
 				buf[rear] = item;
 				rear = (rear+1) % n;
@@ -290,4 +299,39 @@ end SJN_Allocator
 ```
 
 ### merge
-
+```c
+optype stream=(int)
+module Merge[i=1 to N]
+	op in1 stream, in2 stream;
+	op initialize(cap stream); // link stream saída
+body
+	process Filter{
+		int v1,v2;
+		cap stream out;
+		in initialize(c)->out=c; ni
+		in in1(v)->v1=v; ni
+		in in2(v)->v2=v; ni
+		while(v1 != EOS and v2 != EOS)
+			if(v1<=v2){
+				call out(v1)
+				in in1(v)->v1=v; ni
+			}
+			else{
+				call out(v2)
+				in in2(v)->v2=v; ni
+			}
+		if(v1 == EOS){
+			while(v2!=EOS){
+				call out(v2); 
+				in in2(v)->v2=v; ni
+			}
+		}
+		else{
+			while(v1!=EOS){
+				call out(v1); 
+				in in1(v)->v1=v; ni
+			}
+		}
+		call out(EOS);
+		end Merge	
+```
