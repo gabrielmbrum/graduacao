@@ -116,6 +116,7 @@ o aleardo não passou tudo deste capítulo, então abaixo segue as implementaç�
 ---
 ### problema do barbeiro dorminhoco
 
+versão assíncrona
 ```c
 
 chan cli[N] (int clientId);
@@ -162,6 +163,40 @@ process Client[i = 0 to N] {
 
 ```
 
+versão síncrona
+```
+chan cli(string msg);
+chan bar(int buff);
+chan cadeira(int buff);
+
+#define CHEGUEI 1
+#define LEVANTEI 2
+
+process Barber() {
+	int buff;
+	while (true) {
+		receive bar(buff);
+		
+		sync_send cli("senta aqui");
+		corta();
+		sync_send cli("cortei ja");
+		receive cadeira(buff)
+	}
+}
+
+process Client() {
+	string buff;
+	while (true) {
+		sync_send bar(CHEGUEI);
+		
+		receive cli(buff);
+		receive cli(buff);
+		
+		sync_send cadeira(LEVANTEI)
+	}
+}
+
+```
 ### problema do produtor consumidor
 
 introdução de nova sintaxe -> `sync_send` -> faz envio sincrono
