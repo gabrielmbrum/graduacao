@@ -11,3 +11,4 @@ pcp/src/thread_openmp/trap
 compgraf/src/.vscode/
 pcp/docs/foundations-of-multithreaded-parallel-and-distributed-programming.pdf
 pcp/draw
+llm/slides
