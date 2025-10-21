@@ -60,6 +60,16 @@ GL_LINE_STRIP -> desenha um grupo de segmentos de linhas conectados do primeiro 
 	- rotação
 		- girar em torno da origem, um objeto
 		- considerando um ângulo $\theta$ qualquer em suas coordendas
+		- objeto original -> translação do ponto pivo a origem -> rotação -> translação para a posição inicial
 		- ![[formula_rotacao_2D.png]]
 		- ![[rotacao_formula_3D.png]]
+- adaptação para normaalização das operações
+	- rotação e escala são feitas por meio de multiplicação
+	- translação é feita por soma
+	- para facilitar a combinação das operações, precisamos transformar a translação em multiplicação
+	- **coordenadas homogêneas**
+		- translação por produto matricial
+		- transição entre sistemas de coordenadas
+		- utiliza quatro valores para definir um ponto $P \begin{pmatrix} x \\ y \\ z \\ M \end{pmatrix}$ , com M = 1
+		- ![[coord_homo_M1.png]]
 		- 
