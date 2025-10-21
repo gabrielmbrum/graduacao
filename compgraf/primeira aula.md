@@ -79,15 +79,19 @@ a quantidade de informação é medida em pixel
 
 **pixel:** medida adimensional (sem tamanho físico definido, é definido pela resolução do dispositivo) -> isto afeta a qualidade da imagem
 
-usando a resolução máxima -> equivalente a uma unidade física do monitor
-resolução menor que a máxima -> composto por mais de um ponto 
+usando a resolução máxima -> um pixel é igual a uma unidade física do monitor
+resolução menor que a máxima -> um pixel é composto por mais de uma unidade física do monitor
 
-**qualidade da imagem:** influenciada pelo dot pitch, o qual, para manter a qualidade, deve ser no máximo de 0.28mm (mais pontos por polegada -> melhor a resolução)
+**qualidade da imagem:** influenciada pelo dot pitch (distância física entre os centros de um pixel), o qual, para manter a qualidade, deve ser no máximo de 0.28mm (mais pontos por polegada -> melhor a resolução)
 
 ---
 ### tecnologia LCD (Liquid Crystal Display)
 
 duas lâminas polarizadas (uma na horizontal e outra na vertical) que tem uma camada de cristal líquido entre elas, para orientar a luz e definir as variações de intensidade
+
+a cor final é criada pela mistura de quanta luz passa pelos subpixels R, G e B
+
+a intensidade é controlada pela voltagem que a camada de transistor aplica, a qual faz os critais líquidos se alinharem de forma mais ou menos torcida, bloqueando mais ou menos luz
 
 ___
 ### tecnologia plasma

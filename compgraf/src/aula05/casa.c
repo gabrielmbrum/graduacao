@@ -61,8 +61,7 @@ void drawScene() {
 
   glPushMatrix();
   glBegin(GL_TRIANGLES);
-  glColor3ub(0, 255, 0);
-  glVertex3f(-5, 5, 5);
+  glColor3ub(0, 255, 0); 
   glVertex3f(5, 5, 5);
   glVertex3f(0, 10, 0);
   glEnd();
