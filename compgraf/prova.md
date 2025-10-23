@@ -342,8 +342,7 @@ centro de projeção no infinito (não tem um ponto fixo - ex. de ponto fixo: ca
 
 # aula 05
 
-
-### rasterização: representação matricial
+### rasterização: convertendo formas geométricas em pixels numa matriz
 - gráficos
 	- definidos por meio de primitivas geométricas
 	- ponto, segmento de reta, arco de circunferência, polígonos
@@ -358,6 +357,11 @@ algoritmos para segmento de reta -> representação matricial, tem quatro formas
 3. cada linha vertical, seleção dos pixels mais próximos do ponto de intersecção
 4. mesmo critério de 3, porém nas linhas horizontais
 ![[representacoes de segmentos.png]]
+
+##### tipos de algoritmos
+- algoritmo para segmentos de reta
+	- dada a equação da reduzida da reta $y \space = \space y_1 \space + \space a(x\space-\space x_1)$ 
+	- 
 ##### conversão matricial
 - algoritmos para semgnetos de retas
 - características desejáveis
@@ -375,7 +379,56 @@ algoritmos para segmento de reta -> representação matricial, tem quatro formas
 		- ($x_p + 1, y$) ou 
 		- algoritmo do ponto médio
 
-##### algoritmo do "ponto médio"
+##### algoritmo do "ponto médio" para segmentos de reta
+- decisão central: dado um pixel o algoritmo precisa decidir qual será o próximo pixel na coluna $x_p$ + 1 
+	- PI -> ($x_p$ + 1, $y_p$)
+	- PS -> ($x_p$ + 1, $y_p$ + 1)
+- o algoritmo calcula o ponto médio M ($x_p$ + 1, $y_p$ + 1/2)
+- a variável de decisão (d): o algoritmo verifica se a linha ideal passa acima ou abaixo de M, isto é feito calculando o valor da função no ponto M
+	- se d > 0 então PS
+	- se d <= então PI
+- a eficiência é que ele não recalcula d do zero a cada passo, ele atualiza de forma incremental usando apenas adições
+	-  se $d_{anterior}$ for PI, então $d_{novo}$  é = dy
+	-  se $d_{anterior}$ for PS, então $d_{novo}$  é = dy - dx
 
+##### algoritmo do "ponto médio" para circunferências
+- se d > 0 então é fora circunferência
+- se d < 0 então dentro circunferência
+- se d = 0 então sobre
+
+
+
+### aliasing
+
+efeito aliasing -> aparência serrilhada ou efeito escada
+![[aliasing.png]]
+
+#### preenchimento de polígonos
+
+em muitos casos rasterizar não é suficiente, é necessário preeencher
+
+**preenchimento em pares**
+- usar a regra daparidade
+	- paridade inicial é par (0 ou falso)
+	- encontrou ponto -> inverte paridade
+- como tratar vértices que são compartilhados por mais de uma aresta do polígono?
+	- verifique se o pixel é um vértice
+	- determine o tipo de vértice ($y_{min}$ e/ou $y_{min}$)
+	- se for min e max inverte paridade e pinta o pixel
+- se houver apenas um vértice na aresta
+	- se for min e max -> não inverte e pinta o pixel
 
 # aula 06
+
+### recorte de primitivas 2D - clipping
+
+recorte de segmentos de retas - algoritmo de cohen-sutherland
+
+![[cohen_sutherland_segmentos.png]]
+
+![[classificacao dos segmentos.png]]
+
+![[teste_de_aceitacao.png]]
+
+![[exemplo_de_recorte.png]]
+
