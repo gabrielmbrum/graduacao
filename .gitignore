@@ -1,21 +1,5 @@
-.obsidian/
-lab_prog/primeira_aula/.vscode/
+pdi/src/.venv/
+pdi/src/.venv/*
 
-# paths para executaveis
-compgraf/rascunho.md
-compgraf/src/aula02/aula2
-compgraf/src/aula03/aula3
-compgraf/src/aula03/cha
-compgraf/src/aula03/cubo
-compgraf/src/aula05/casa
-compgraf/src/aula05/comView
-compgraf/src/aula08/
-
-pcp/src/thread_openmp/hello
-pcp/src/thread_openmp/pc
-pcp/src/thread_openmp/trap
-compgraf/src/.vscode/
-pcp/docs/foundations-of-multithreaded-parallel-and-distributed-programming.pdf
-pcp/draw
-llm/slides
-pcp/slides
+bioinfo/.venv/
+bioinfo/.venv/*
