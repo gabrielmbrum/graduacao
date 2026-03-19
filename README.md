@@ -1,13 +1,6 @@
-# notes and codes of my 6th semester of CS
+# graduação
 
-in this repo, i will have all notes that i made, the courses (and it respective directory in this repo) is:
-- Programação Concorrente e Paralela (./pcp/)
-- Laboratório de Linguagem de Montagem (./llm/)
-- Otimização Linear (./otim_lin/)
-- Laboratório de Programação (./lab_prog/)
-- Computação Gráfica (./compgraf/)
-
-
+in this repo its some of the codes and studies notes that i made during mY Bachelor`s Degree in Computer Science, at UNESP
 
 
 
