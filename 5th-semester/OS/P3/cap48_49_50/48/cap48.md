@@ -30,8 +30,8 @@
   - Não garante entrega ou ordem.
   - Leve e rápido, mas expõe falhas à aplicação.
 - **Exemplo de Código**:  
-  ![fig 48.1](image.png)
-  ![fig 48.2](image-1.png)
+  ![fig 48.1](graduacao/5th-semester/OS/P3/cap48_49_50/48/image.png)
+  ![fig 48.2](graduacao/5th-semester/OS/P3/cap48_49_50/48/image-1.png)
   *Cliente/Servidor usando biblioteca UDP simples*.
 
 ---
@@ -41,8 +41,8 @@
   - **ACKs + Timeout/Retry**: Confirmação de recebimento e retransmissão em caso de perda.
   - **Contadores de Sequência**: Evitam duplicação de mensagens (IDs únicos).
 - **Casos de Falha**: 
-![fig 48.3-4](image-2.png) 
-![fig 48.5](image-3.png)
+![fig 48.3-4](graduacao/5th-semester/OS/P3/cap48_49_50/48/image-2.png) 
+![fig 48.5](graduacao/5th-semester/OS/P3/cap48_49_50/48/image-3.png)
   *(a) ACK perdido, (b) requisição perdida, (c) resposta perdida*.
 - **Otimização**: Backoff exponencial para evitar congestionamento.
 

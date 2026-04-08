@@ -19,7 +19,7 @@ the first thing we'll need to do is divide the disk into **blocks**. simple fs u
 
 in a partition of size N 4-KB blocks and with just 64 blocks, we have this:
 
-![disk image](image.png)
+![disk image](graduacao/5th-semester/OS/P3/cap40_41/40/image.png)
 
 ### what do we need to store in these blocks to build a fs?
 
@@ -27,7 +27,7 @@ the 1st thing is user data (in fact, most of the space is destinated to this). w
 
 we will reserve a fixed portion for these blocks, like this:
 
-![data region](image-1.png)
+![data region](graduacao/5th-semester/OS/P3/cap40_41/40/image-1.png)
 
 the fs has to track info about each file, this is a key piece of **metadata**, and tracks:
 - which data blocks comprise the file
@@ -41,7 +41,7 @@ to store all this, fs uses the **inode** (welcome back yeey).
 
 we will have an **inode table** to stores the inodes, which occupy a fix size, like this:
 
-![inode region](image-2.png)
+![inode region](graduacao/5th-semester/OS/P3/cap40_41/40/image-2.png)
 
 its missing the **allocation structures**, that supports the track whether inodes or data blocks are free or allocated. 
 
@@ -51,7 +51,7 @@ remzi chosed the simple **bitmap**, one for the data region (**data bitmap**) an
 
 a bitmap is a simple structure: each bit is used to indicate whether its free (0) or in-use (1). now look the new layout of the disk;
 
-![bitmaps regions](image-3.png)
+![bitmaps regions](graduacao/5th-semester/OS/P3/cap40_41/40/image-3.png)
 
 the last block is for the **superblock**. it contains info about this particular file system, including, how many inodes and data blocks are in the file system, where the inode table begins, a magic number to identify the file system type and etc..
 

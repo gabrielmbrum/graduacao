@@ -39,11 +39,11 @@ model "fail-stop" = or it's working or it's permanently lost
 there is no redundancy
 stripe: blocks in the same row
 
-![simple striping](image.png)
+![simple striping](graduacao/5th-semester/OS/P2/cap38_RAIDs/image.png)
 
 as showed in this image, this is a simple striping, where there is only 1 block of info by disk and then switch it
 
-![striping with chunk size 2](image-1.png)
+![striping with chunk size 2](graduacao/5th-semester/OS/P2/cap38_RAIDs/image-1.png)
 
 example above of a chunk w the size of 2 blocks
 
@@ -78,9 +78,9 @@ random:
   - less time transfering data
   - R MB/s
 
-![S calculus](image-2.png)
+![S calculus](graduacao/5th-semester/OS/P2/cap38_RAIDs/image-2.png)
 
-![R calculus](image-3.png)
+![R calculus](graduacao/5th-semester/OS/P2/cap38_RAIDs/image-3.png)
 
 **back to raid-0 analysis**
 

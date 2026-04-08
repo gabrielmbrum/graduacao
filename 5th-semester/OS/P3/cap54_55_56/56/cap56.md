@@ -20,11 +20,11 @@ the basic ideai behind cryptography is to take a piece of data and use an algori
 
 we start with data _P_ (**plaintext**), a key _K_ and an encryption algorithm _E()_. we end up with _C_ (**ciphertext**).
 
-![crypto](image.png)
+![crypto](graduacao/5th-semester/OS/P3/cap54_55_56/56/image.png)
 
 with the decryption algorithm _D()_ we can revert it:
 
-![decrypto](image-1.png)
+![decrypto](graduacao/5th-semester/OS/P3/cap54_55_56/56/image-1.png)
 
 **all the cryptography's benefits relies on the secrecy of the key**, because de/crypto algorithms are known.
 
@@ -40,7 +40,7 @@ in other way, Microsoft could generate a different key for each user, but that w
 
 so the genius came and said "what if we use two keys, one to encrypt and one to decrypt?"
 
-![en/de crypt w 2 keys](image-2.png)
+![en/de crypt w 2 keys](graduacao/5th-semester/OS/P3/cap54_55_56/56/image-2.png)
 
 now Microsoft can tell everyone ther decrypton key, but keep the encrypt key secret.
 

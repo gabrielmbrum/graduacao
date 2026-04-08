@@ -32,7 +32,7 @@ each entry in a directory refers to either files or other directories (allows di
 
 the hierarchy starts at **root directory** (in UNIX-based) and uses some kind of **separator** to name subsequent **sub-directories** until the desired file or directory is named.
 
-![an example directory tree](image.png)
+![an example directory tree](graduacao/5th-semester/OS/P3/cap39/image.png)
 
 valid directories in the example are /, /foo, /bar, /bar/bar,
 /bar/foo and valid files are /foo/bar.txt and /bar/foo/bar.txt.
@@ -199,7 +199,7 @@ all the currently opened files in the system together are referred to as the **o
 
 #### reading a file of 300 bytes
 
-![example 1](image-1.png)
+![example 1](graduacao/5th-semester/OS/P3/cap39/image-1.png)
 
 important things to note:
 - offset is initialized to zero
@@ -208,14 +208,14 @@ important things to note:
 
 ##### reading the same file twice
 
-![example 2](image-2.png)
+![example 2](graduacao/5th-semester/OS/P3/cap39/image-2.png)
 
 two file descriptors are allocated (3 and 4) and each refers to a different entry in the open file table (OFT). in the imagem OFT[10] and OFT[11] refers to the entries of the files
 
 #### *lseek()*
 process uses _lseek()_ to reposition the current offset before reading
 
-![example 3](image-3.png)
+![example 3](graduacao/5th-semester/OS/P3/cap39/image-3.png)
 
 here _lseek()_ call first sets the current offset to 200, the subsequent _read()_ then reads the next 50 bytes and updates the current offset accordingly.
 

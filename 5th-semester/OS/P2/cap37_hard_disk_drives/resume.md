@@ -24,12 +24,12 @@ single 512-byte write is atomic (or it's entirely completed or its not completed
 
 ## 37.3 a simple disk drive
 
-![alt text](image.png)
+![alt text](graduacao/5th-semester/OS/P2/cap37_hard_disk_drives/image.png)
 
 this track has just 12 sectors, each with 512 bytes.
 it's addressed from 0 to 11.
 
-![alt text](image-1.png)
+![alt text](graduacao/5th-semester/OS/P2/cap37_hard_disk_drives/image-1.png)
 
 **single track latency: the rotational delay**
 it's the full rotation delay R.
@@ -49,9 +49,9 @@ write-back: confirma após gravar na cache
 
 ## 37.4 I/O time: doing the math 🔥
 
-![alt text](image-2.png)
+![alt text](graduacao/5th-semester/OS/P2/cap37_hard_disk_drives/image-2.png)
 
-![alt text](image-3.png)
+![alt text](graduacao/5th-semester/OS/P2/cap37_hard_disk_drives/image-3.png)
 
 ![alt text](image-4.png)
 

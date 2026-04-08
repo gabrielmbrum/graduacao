@@ -4,7 +4,7 @@
 
 ### 36.1 system architecture
 
-![alt text](image.png)
+![alt text](graduacao/5th-semester/OS/P2/cap36_IO_devices/image.png)
 
 why hierachical? because it's costly and physical space is crucial
 
@@ -12,7 +12,7 @@ the faster a bus is, the shorter it must be (too expensive and so less devices w
 
 ### 36.2 a canonical device
 
-![alt text](image-1.png)
+![alt text](graduacao/5th-semester/OS/P2/cap36_IO_devices/image-1.png)
 
 interface: allows the system software to control its operation
 
@@ -41,11 +41,11 @@ this basic protocol its simple and works, but its not eficcient bc of polling (l
 instead of polling, the OS issue a request, sleep the process and context switch
 when the I/O is done, raise a hardware interrupt -> CPU jumps into the OS at a pre-determined interrupt handler
 
-![without interrupt](image-2.png)
+![without interrupt](graduacao/5th-semester/OS/P2/cap36_IO_devices/image-2.png)
 
 in this case it stays polling and wasting CPU time (without interrupt)
 
-![alt text](image-3.png)
+![alt text](graduacao/5th-semester/OS/P2/cap36_IO_devices/image-3.png)
 
 in this case its done a context switch, so process 2 gains the CPU
 

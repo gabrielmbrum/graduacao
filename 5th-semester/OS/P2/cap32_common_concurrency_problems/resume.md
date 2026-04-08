@@ -103,9 +103,9 @@ Order Violation Bugs
 
 ### 32.3 deadlock bugs
 
-![alt text](image.png)
+![alt text](graduacao/5th-semester/OS/P2/cap32_common_concurrency_problems/image.png)
 
-![alt text](image-1.png)
+![alt text](graduacao/5th-semester/OS/P2/cap32_common_concurrency_problems/image-1.png)
 
 another reason, its the common encapsulation, that makes easier to code but keep us distance from the low-level implementation, so we dont know if the lock its done right
 
@@ -135,12 +135,12 @@ Prevention
   ```
 
 - no preemption: using trylock() routines
-  ![alt text](image-2.png)
+  ![alt text](graduacao/5th-semester/OS/P2/cap32_common_concurrency_problems/image-2.png)
   (livelock problem: repeatdly failing to acquire the lock)
 
 - mutual exclusion: dont rely on mutual exclusion bicth! use compare and swap
 
-  ![alt text](image-3.png)
+  ![alt text](graduacao/5th-semester/OS/P2/cap32_common_concurrency_problems/image-3.png)
 
   imagine a list insertion method
 

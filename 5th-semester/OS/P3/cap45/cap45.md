@@ -29,7 +29,7 @@ a cosmic ray can flip bits, fortunately in-disk **error correcting codes (ECC)**
 theres cases where a disk block becomes corrupt in a "not-visable" way, like with wrong content, and this is called **silent faults**.
 
 how rare these types of faults are?
-![percentage of each type](image.png)
+![percentage of each type](graduacao/5th-semester/OS/P3/cap45/image.png)
 
 ### Additional findings
 
@@ -71,10 +71,10 @@ is made a trade-off between strenght (how good the protection is made) and speed
 one simple way is by using XOR function. its computed by XOR'ing each chunk of the data block beign checksummed. 
 
 example of data block:
-![dt block](image-1.png)
+![dt block](graduacao/5th-semester/OS/P3/cap45/image-1.png)
 
 XOR each column:
-![xor data](image-2.png)
+![xor data](graduacao/5th-semester/OS/P3/cap45/image-2.png)
 
 another basic checksum is addition. its fast.
 
@@ -92,7 +92,7 @@ how should checksum be stored on disk?
 
 basic approach: stores a checksum with each disk sector (block). given a data block _D_, without checksum the layout is this:
 
-![without checksum](image-3.png)
+![without checksum](graduacao/5th-semester/OS/P3/cap45/image-3.png)
 
 but with checksum is like this:
 

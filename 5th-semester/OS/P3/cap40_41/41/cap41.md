@@ -2,7 +2,7 @@
 
 the old UNIX file system was simple and like this on the disk:
 
-![old disk](image.png)
+![old disk](graduacao/5th-semester/OS/P3/cap40_41/41/image.png)
 
 the super block (S) contained the following infos:
 - how big the volume is
@@ -27,7 +27,7 @@ worse, the FS would end up quite **fragmented**. the free list pointed to a bunc
 
 example: data block region with four files (A, B, C and D) each with 2 blocks-size.
 
-![example](image-1.png)
+![example](graduacao/5th-semester/OS/P3/cap40_41/41/image-1.png)
 
 now you dont have sequential performance for E.
 
@@ -51,11 +51,11 @@ FFS aggregatas _N_ consecutive cylinders into a group.
 
 example showing the four outer most tracks of a drive with six plattters and a cylinder group that consists of three cylinders:
 
-![cylinder group](image-2.png)
+![cylinder group](graduacao/5th-semester/OS/P3/cap40_41/41/image-2.png)
 
 organize the drive into **block groups**, each of which is just a consecutive portion of the disk's address space.
 
-![example of block gp](image-3.png)
+![example of block gp](graduacao/5th-semester/OS/P3/cap40_41/41/image-3.png)
 
 placing two files within the same group, FFS can ensure that accessing one after the other wont result in long seeks across the disk.
 

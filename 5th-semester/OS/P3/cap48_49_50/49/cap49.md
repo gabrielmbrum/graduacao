@@ -6,7 +6,7 @@
   - Compartilhamento centralizado de dados.
   - Administração simplificada (backups, segurança).
 - **Arquitetura Básica**: 
-![fig 49.1](image.png)  
+![fig 49.1](graduacao/5th-semester/OS/P3/cap48_49_50/49/image.png)  
   *Clientes acessam arquivos armazenados em servidor via rede.*
 
 ---
@@ -27,10 +27,10 @@
 - **File Handle** (Identificador Único):
   - Volume ID + Inode Number + Generation Number.
 - **Operações Principais**:  
-![fig 49.4](image-1.png)
+![fig 49.4](graduacao/5th-semester/OS/P3/cap48_49_50/49/image-1.png)
   *Exemplos: LOOKUP (obter handle), READ/WRITE (dados), GETATTR (metadados)*.
 - **Exemplo de Fluxo**:  
-![Figura 49.5](image-2.png)  
+![Figura 49.5](graduacao/5th-semester/OS/P3/cap48_49_50/49/image-2.png)  
   *Ações para ler um arquivo (LOOKUP → READs)*.
 
 ---
@@ -39,7 +39,7 @@
 - **Idempotência**: Operações repetíveis sem efeitos colaterais (e.g., READ, WRITE com offset).
 - **Recuperação de Falhas**:
   - Cliente retransmite após timeout:  
-  ![Figura 49.6](image-3.png)  
+  ![Figura 49.6](graduacao/5th-semester/OS/P3/cap48_49_50/49/image-3.png)  
     *Casos: (1) Requisição perdida, (2) Servidor down, (3) Resposta perdida*.
 - **Vantagem**: Tratamento unificado para perdas de rede/falhas do servidor.
 

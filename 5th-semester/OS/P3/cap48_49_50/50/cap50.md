@@ -32,7 +32,7 @@
 - **Caching hierárquico**:
   - Cliente caminha pelo path (ex: `/home` → `remzi` → `notes.txt`), cacheando diretórios/arquivos localmente e estabelecendo callbacks para cada.
 - **Fluxo de Leitura**:  
-  ![Fig 50.2](image.png)
+  ![Fig 50.2](graduacao/5th-semester/OS/P3/cap48_49_50/50/image.png)
   *Cliente faz Fetch sequencial de diretórios/arquivo, cacheia e estabelece callbacks.*
 
 ### 3.2. Modelo de Consistência
@@ -56,7 +56,7 @@
 
 ## 50.4. Desempenho vs. NFS
 ### 4.1. Análise Qualitativa:  
-![Fig 50.4](image-1.png)
+![Fig 50.4](graduacao/5th-semester/OS/P3/cap48_49_50/50/image-1.png)
 *Workloads típicas e impacto no desempenho.*
 - **Vantagens do AFS**:
   - **Re-leitura de arquivos grandes**: Acesso local (disco) vs. refetch no NFS (rede).
