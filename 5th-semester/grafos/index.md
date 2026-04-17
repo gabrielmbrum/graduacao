@@ -29,17 +29,9 @@
 
 ---
 
-### parte 1
+### [[parte1]]
 
-#### 1. representação de grafos
 
-a representação deve ser uma estrutura que:
-- corresponde de forma única a um grafo dado
-- pode ser armazedas e manipulada em um computador
-
-a representação gráfica por um diagrama de pontos e linhas não satisfaz a segunda condição
-
-##### 1.1 matriz de adjacência
 
 ---
 
