@@ -73,7 +73,7 @@
 - $f(n) = g(n) + h(n)$
 	- $g(n)$: custo real para alcançar *n*
 	- $h(n)$: custo heurístico
-- é compelta
+- é completa
 - é ótima (caso tenha heurística admissível)
 - mantém todos os nós na memória
 - não existe algoritmo que garanta expandir menos nós do que A*

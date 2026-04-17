@@ -1,0 +1,61 @@
+HEURISTIC 1
+
+Difficulty: 2, Average Time: 0.0000059867 seconds, Average Nodes Generated: 3.66
+Effective Branching Factor: 1.1587
+Difficulty: 4, Average Time: 0.0000104618 seconds, Average Nodes Generated: 6.04
+Effective Branching Factor: 0.6289
+Difficulty: 6, Average Time: 0.0000122881 seconds, Average Nodes Generated: 7.09
+Effective Branching Factor: 0.4169
+Difficulty: 8, Average Time: 0.0000169492 seconds, Average Nodes Generated: 8.44
+Effective Branching Factor: 0.3239
+Difficulty: 10, Average Time: 0.0000250292 seconds, Average Nodes Generated: 11.74
+Effective Branching Factor: 0.2898
+Difficulty: 12, Average Time: 0.0000298882 seconds, Average Nodes Generated: 14.45
+Effective Branching Factor: 0.2563
+Difficulty: 14, Average Time: 0.0000282407 seconds, Average Nodes Generated: 13.98
+Effective Branching Factor: 0.2133
+Difficulty: 16, Average Time: 0.0000537586 seconds, Average Nodes Generated: 19.55
+Effective Branching Factor: 0.2080
+Difficulty: 18, Average Time: 0.0000697684 seconds, Average Nodes Generated: 24.76
+Effective Branching Factor: 0.1978
+Difficulty: 20, Average Time: 0.0002622533 seconds, Average Nodes Generated: 38.47
+Effective Branching Factor: 0.2017
+
+--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#
+
+HEURISTIC 2
+
+Difficulty: 2, Average Time: 0.0000095081 seconds, Average Nodes Generated: 3.80
+Effective Branching Factor: 1.1909
+Difficulty: 4, Average Time: 0.0000133467 seconds, Average Nodes Generated: 5.26
+Effective Branching Factor: 0.5818
+Difficulty: 6, Average Time: 0.0000197554 seconds, Average Nodes Generated: 7.52
+Effective Branching Factor: 0.4291
+Difficulty: 8, Average Time: 0.0000220656 seconds, Average Nodes Generated: 8.10
+Effective Branching Factor: 0.3179
+Difficulty: 10, Average Time: 0.0000321174 seconds, Average Nodes Generated: 10.65
+Effective Branching Factor: 0.2783
+Difficulty: 12, Average Time: 0.0000358677 seconds, Average Nodes Generated: 11.32
+Effective Branching Factor: 0.2328
+Difficulty: 14, Average Time: 0.0000510335 seconds, Average Nodes Generated: 14.94
+Effective Branching Factor: 0.2187
+Difficulty: 16, Average Time: 0.0000478148 seconds, Average Nodes Generated: 14.54
+Effective Branching Factor: 0.1870
+Difficulty: 18, Average Time: 0.0000633097 seconds, Average Nodes Generated: 15.66
+Effective Branching Factor: 0.1692
+Difficulty: 20, Average Time: 0.0000692058 seconds, Average Nodes Generated: 19.86
+Effective Branching Factor: 0.1640
+
+--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#--#
+
+RESUME
+
+AVG NODES GEN:
+  -> h1 = 14.818
+  -> h2 = 11.168
+
+B* AVG:
+  -> h1 = 0.3895
+  -> h2 = 0.3769
+
+

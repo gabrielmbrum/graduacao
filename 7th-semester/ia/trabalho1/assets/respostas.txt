@@ -1,0 +1,47 @@
+================================================================================
+RELATÓRIO DE RESPOSTAS TEÓRICAS - TRABALHO 1 - GABRIEL BRUM
+================================================================================
+
+(1) Qual heurística apresentou o menor número de nós gerados e o menor fator de 
+    ramificação efetivo (b*)?
+
+    Com base nos testes realizados, a Heurística 2 (Distância de Manhattan) 
+    apresentou o melhor desempenho. Enquanto a Heurística 1 (peças fora de lugar) 
+    gerou uma média de 14.818 nós, a Heurística 2 gerou apenas 11.168 nós. 
+    Da mesma forma, o fator de ramificação efetivo (b*) da Heurística 2 foi de 
+    0.3769, sendo inferior aos 0.3895 da Heurística 1. Isso indica que a 
+    Heurística 2 é mais eficiente em guiar a busca para o objetivo.
+
+(2) É correto afirmar que h2 domina h1? Como essa relação impacta matematicamente 
+    o número de nós expandidos pelo algoritmo A*?
+
+    Sim, é correto afirmar que h2 domina h1. Matematicamente, h2 domina h1 porque, 
+    para qualquer estado do tabuleiro, o valor estimado pela Distância de 
+    Manhattan (h2) é sempre maior ou igual ao número de peças fora de lugar (h1). 
+    Como ambas são admissíveis, o uso de uma heurística mais informativa (maior) 
+    como h2 garante que o algoritmo A* nunca expandirá mais nós do que expandiria 
+    com h1, resultando em uma busca mais rápida e que consome menos memória.
+
+(3) Por que ambas as heurísticas são consideradas admissíveis? O que aconteceria 
+    com a otimalidade do algoritmo se a heurística superestimasse o custo real?
+
+    Ambas são admissíveis porque nunca superestimam o custo real para atingir o 
+    objetivo. No caso de h1, cada peça fora de lugar precisa de pelo menos um 
+    movimento. No caso de h2, a distância linear é o caminho mínimo absoluto 
+    sem considerar obstáculos. Se uma heurística superestimasse o custo real 
+    (tornando-se inadmissível), o algoritmo A* perderia sua garantia de 
+    otimalidade, podendo encontrar um caminho para o objetivo que não é o de 
+    menor custo (menor número de movimentos).
+
+(4) Qual é a principal limitação do A* ao lidar com problemas de maior escala 
+    (como o quebra-cabeça de 15 peças) e como o armazenamento dos nós impacta 
+    a memória?
+
+    A principal limitação é o consumo de memória RAM. O algoritmo A* precisa 
+    manter todos os nós gerados e explorados em estruturas de dados (como o set 
+    de explorados e a fila de prioridade) para evitar ciclos e garantir a 
+    otimalidade. Em problemas de maior escala, o número de estados possíveis 
+    cresce exponencialmente (explosão combinatória), fazendo com que a memória 
+    do sistema seja esgotada muito antes de o processador encontrar a solução.
+
+================================================================================

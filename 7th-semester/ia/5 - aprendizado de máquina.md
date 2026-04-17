@@ -29,6 +29,21 @@
 
 ### tipos de aprendizado de máquina
 
+>**modelos preditivos**
+>- problema de classificação: o domínio é um conjunto de valores nominais ou valores discretos
+	- dado um conjunto de observação $D = \{(X_i, y_i): X_i \in X; y_i \in Y; i = 1, \dots, N\}$
+	- $f$ representa a função objetivo em que $y_i = f(X_i, \theta) + e_i$
+	- essa $f$ mapeia as entradas $X_i$ nas saídas $y_i$
+	- o algoritmo preditivo aprende uma aproximação para $f$ que permite estimar uma saída para novas entradas de X
+	- classificação: $y_i \in Y = \{C_1, C_2, \dots, C_n\}$ (classes do problema)
+	.
+>- problema de regressão: o domínio é um conjunto infinito e ordenado de valores
+	- dado um conjunto de observação $D = \{(X_i, y_i): X_i \in X; y_i \in Y; i = 1, \dots, N\}$
+	- $f$ representa a função objetivo em que $y_i = f(X_i, \theta) + e_i$
+	- essa $f$ mapeia as entradas $X_i$ nas saídas $y_i$
+	- o algoritmo preditivo aprende uma aproximação para $f$ que permite estimar uma saída para novas entradas de X
+	- regressão: $y_i \in Y = \mathbb{R}$
+
 **aprendizado supervisionado**
 - conjunto de dados com rótulos da classe-alvo conhecidos
 - cada registro é descrito por um vetor de atributos e pelo rótulo da classe
