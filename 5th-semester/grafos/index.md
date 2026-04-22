@@ -1,4 +1,4 @@
-### parte 1 - deadline em abril
+### [[parte1]] - deadline em abril
 1) Representação de grafos: 
 	1) matriz de adjacência
 	2) matriz de incidência
@@ -26,11 +26,6 @@
 2) Fluxo Máximo em Redes: 
 	1) Conceitos básicos
 	2) O Algoritmo de Ford Fulkerson.
-
----
-
-### [[parte1]]
-
 
 
 ---
