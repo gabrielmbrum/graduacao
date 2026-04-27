@@ -1,0 +1,32 @@
+Carregando base Breast Cancer Wisconsin...
+
+==================================================
+A) ANÁLISE DE OUTLIERS
+ -> 'boxplots_outliers.png' salvo com sucesso!
+
+==================================================
+B) MATRIZ DE CORRELAÇÃO
+ -> 'matriz_correlacao.png' salvo com sucesso!
+
+Top 3 Maiores Correlações entre Atributos (Indícios de Multicolinearidade):
+ - mean radius e mean perimeter: 0.9979
+ - worst perimeter e worst radius: 0.9937
+ - mean area e mean radius: 0.9874
+
+Top 3 Atributos mais associados ao Diagnóstico (target):
+ - worst concave points: 0.7936
+ - worst perimeter: 0.7829
+ - mean concave points: 0.7766
+
+==================================================
+C) NORMALIZAÇÃO (PADRONIZAÇÃO)
+
+Escalas originais (Média e Desvio Padrão):
+ - mean area: Média = 654.8891, Std = 351.9141
+ - mean smoothness: Média = 0.0964, Std = 0.0141
+ - mean symmetry: Média = 0.1812, Std = 0.0274
+
+Escalas APÓS Padronização:
+ - mean area: Média = -0.0000, Std = 1.0009
+ - mean smoothness: Média = 0.0000, Std = 1.0009
+ - mean symmetry: Média = -0.0000, Std = 1.0009
