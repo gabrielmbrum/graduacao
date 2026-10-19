@@ -27,7 +27,7 @@ def carteiro_chines_didatico(G):
             peso_aresta = G[u][v]['weight']
             G_euleriano.add_edge(u, v, weight=peso_aresta) # Adiciona aresta paralela
             
-        return list(nx.eulerian_circuit(G_euleriano))
+        return list(nx.eulerian_circuit(G_euleriano, keys=True))
     else:
         return "Para mais de 2 nós ímpares, é necessário o Emparelhamento Perfeito de Peso Mínimo."
 

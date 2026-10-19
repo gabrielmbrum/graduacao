@@ -63,5 +63,5 @@ def demonstrar_isomorfismo():
     print("Basta reordenar vértices e arestas para B voltar a ser A.")
 
 # Executando as demonstrações
-demonstrar_grafo_desconexo()
+# demonstrar_grafo_desconexo()
 demonstrar_isomorfismo()

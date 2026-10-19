@@ -39,3 +39,14 @@ https://www.ibilce.unesp.br/Home/Departamentos/MatematicaAplicada/socorro4029/li
 https://www.ibilce.unesp.br/Home/Departamentos/MatematicaAplicada/socorro4029/lista-grafos-3_rev2014_parteii.pdf
 https://www.ibilce.unesp.br/#!/departamentos/matematica-aplicada/pagina-pessoal/socorro/disciplinas/teoria-dos-grafos/
 
+---
+
+## cronometro
+
+introdução e conceitos iniciais - 20 slides - 9min
+
+representação de grafos - 33 slides - 22min
+
+grafos eulerianos - 26 slides - 15min
+
+grafos hamiltonianos - 20 slides - 
