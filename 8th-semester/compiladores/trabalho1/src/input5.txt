@@ -1,0 +1,5 @@
+[ Simulando sintaxe de C/Java com acentuacao ]
+se ( contador == 10 ) {
+    índice = índice ++ ;
+}
+média_final : 7.5 ;

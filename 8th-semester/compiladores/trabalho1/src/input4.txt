@@ -1,0 +1,3 @@
+[ Este é um comentario [ com outro comentario dentro ] que vai gerar erro ]
+x = 10;
+[ O lexer vai se perder no colchete acima ]

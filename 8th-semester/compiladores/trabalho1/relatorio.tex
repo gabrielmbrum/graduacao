@@ -1,0 +1,99 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{multicol,lipsum}
+\usepackage{url}
+
+\begin{document}
+%\maketitle
+
+\begin{titlepage}
+	\begin{center}
+	
+	%\begin{figure}[!ht]
+	%\centering
+	%\includegraphics[width=2cm]{c:/ufba.jpg}
+	%\end{figure}
+
+		\Large{UNESP - IBILCE}\\
+		\large{Departamento de Ciência da Computação e Estatísticas}\\ 
+		\large{Disciplina de Compiladores - Bacharelado em Ciência da Computação}\\ 
+		\vspace{15pt}
+        \vspace{95pt}
+        \textbf{\LARGE{Analisador Léxico - Trabalho 1}}\\
+		%\title{{\large{Título}}}
+		\vspace{3,5cm}
+	\end{center}
+	
+	\begin{flushleft}
+		\begin{tabbing}
+			Alunos: Gabriel Martins Brum e João Carlos Gonçalves Nobre \\
+			Professora: Profa. Dra. Renata Spolon Lobato
+	\end{tabbing}
+ \end{flushleft}
+	\vspace{1cm}
+	
+	\begin{center}
+		\vspace{\fill}
+			 Outubro\\
+		 2026
+			\end{center}
+\end{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\newpage
+\pagenumbering{arabic}
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+\section{Descrição da Linguagem Regular}
+
+A linguagem regular desenvolvida para este analisador léxico é baseada nos requisitos do Trabalho 1 e composta pelas seguintes definições:
+
+\begin{itemize}
+    \item \textbf{Identificadores:} Iniciam obrigatoriamente com uma letra ou sublinhado (\verb|[a-zA-Z_]|), podendo ser seguidos por letras, números ou sublinhados adicionais.
+    \item \textbf{Números Inteiros:} Formados por uma sequência contínua de um ou mais dígitos (\verb|[0-9]+|).
+    \item \textbf{Números Reais:} Definidos por uma parte inteira de um ou mais dígitos, seguida de um ponto separador (\verb|.|) e uma parte fracionária (\verb|[0-9]+|).
+    \item \textbf{Operadores:} A linguagem reconhece os operadores aritméticos de soma (\verb|+|), subtração (\verb|-|), multiplicação (\verb|*|) e divisão (\verb|/|), além do operador de atribuição (\verb|=|).
+    \item \textbf{Pontuação e Delimitadores:} São reconhecidos os símbolos de vírgula (\verb|,|), ponto (\verb|.|), ponto e vírgula (\verb|;|), dois pontos (\verb|:|), além de chaves (\verb|{|, \verb|}|) e parênteses (\verb|(|, \verb|)|) para aninhamento de instruções.
+    \item \textbf{Comentários:} Delimitados estritamente por colchetes (\verb|[| e \verb|]|). O analisador reconhece e ignora formalmente qualquer conteúdo interno aos mesmos, sem gerar tokens.
+    \item \textbf{Tratamento de Erros e Espaços:} Espaços em branco, quebras de linha e tabulações são ignorados, enquanto quebras de linha incrementam o contador de rastreamento. Qualquer caractere não previsto pelas regras descritas acima é capturado e gera o aviso de \textit{Erro léxico}, indicando o caractere inválido e a linha de ocorrência.
+\end{itemize}
+
+\section{Manual do Usuário}
+
+Para facilitar a compilação e a validação do analisador léxico, o projeto foi estruturado com scripts Bash de automação. É necessário possuir o compilador \textit{GCC} e a ferramenta \textit{Flex} devidamente instalados no sistema.
+
+\subsection*{Compilação Rápida}
+Para gerar o analisador léxico a partir do código fonte, basta utilizar o script de compilação fornecido no diretório:
+\begin{verbatim}
+$ chmod +x compile.sh
+$ ./compile.sh
+\end{verbatim}
+O script \texttt{compile.sh} encarrega-se automaticamente de invocar o Flex sobre o arquivo \texttt{lexer.l} e, na sequência, utilizar o GCC para converter o código intermediário \texttt{lex.yy.c} no executável final do analisador.
+
+\subsection*{Execução e Rotina de Testes}
+O analisador pode ser utilizado isoladamente apontando para qualquer arquivo de texto, sendo o arquivo \texttt{input1.txt} o explicitamente solicitado no enunciado do trabalho, que não contém erros léxicos. A execução é realizada da seguinte forma:
+\begin{verbatim}
+$ ./lexer input1.txt
+\end{verbatim}
+
+Para validar todos os limites e tratamentos de erros discutidos durante o desenvolvimento, criamos um ambiente de teste em lote. Basta utilizar o script \texttt{run\_tests.sh}:
+\begin{verbatim}
+$ chmod +x run_tests.sh
+$ ./run_tests.sh
+\end{verbatim}
+Este script percorrerá automaticamente os casos de teste rigorosos (de \texttt{input1.txt} até \texttt{input5.txt}), imprimindo as respectivas quebras de linha e saídas no terminal. 
+
+Para validar a integridade da implementação, consulte o arquivo auxiliar \texttt{expected\_output.txt}. Ele contém o mapeamento e o gabarito detalhado de todos os tokens e erros léxicos que devem ser apresentados no terminal durante a execução da bateria de testes.
+
+\subsection*{Repositório \textit{Github}}
+
+Caso seja de interesse, todo o código fonte e arquivos para a realização deste trabalho estão disponível em \url{https://github.com/gabrielmbrum/graduacao/tree/main/8th-semester/compiladores/trabalho1/}.
+
+\end{document}

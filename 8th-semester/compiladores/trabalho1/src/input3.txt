@@ -1,0 +1,5 @@
+[ Teste de limites de formatacao numerica ]
+99identificador = 10;
+taxa = .85;
+margem = 90. ;
+calculo = 100+200*300/400-500;

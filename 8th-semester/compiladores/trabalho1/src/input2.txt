@@ -1,0 +1,5 @@
+[ Testando caracteres nao suportados ]
+@variavel = 100;
+valor_total = preco + taxa $;
+nome_arquivo = "dados.txt" !;
+a & b;

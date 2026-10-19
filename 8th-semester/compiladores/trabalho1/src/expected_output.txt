@@ -1,0 +1,137 @@
+==============================
+Rodando teste: input1.txt
+==============================
+Comentario ignorado na linha 1
+Token: IDENTIFICADOR (identificador_1) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: NUM_INTEIRO (100) encontrado na linha 2
+Token: PONTO_VIRGULA (;) encontrado na linha 2
+Token: IDENTIFICADOR (taxa) encontrado na linha 3
+Token: DOIS_PONTOS (:) encontrado na linha 3
+Token: NUM_REAL (4.50) encontrado na linha 3
+Token: PONTO (.) encontrado na linha 3
+Token: IDENTIFICADOR (total) encontrado na linha 4
+Token: ATRIBUICAO (=) encontrado na linha 4
+Token: IDENTIFICADOR (identificador_1) encontrado na linha 4
+Token: OP_MULT (*) encontrado na linha 4
+Token: IDENTIFICADOR (taxa) encontrado na linha 4
+Token: PONTO_VIRGULA (;) encontrado na linha 4
+Token: ABRE_CHAVE ({) encontrado na linha 6
+Token: ABRE_PARENTESE (() encontrado na linha 7
+Token: IDENTIFICADOR (outro_teste_aqui) encontrado na linha 7
+Token: FECHA_PARENTESE ()) encontrado na linha 7
+Token: FECHA_CHAVE (}) encontrado na linha 8
+
+
+==============================
+Rodando teste: input2.txt
+==============================
+Comentario ignorado na linha 1
+Erro lexico: caractere invalido '@' na linha 2
+Token: IDENTIFICADOR (variavel) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: NUM_INTEIRO (100) encontrado na linha 2
+Token: PONTO_VIRGULA (;) encontrado na linha 2
+Token: IDENTIFICADOR (valor_total) encontrado na linha 3
+Token: ATRIBUICAO (=) encontrado na linha 3
+Token: IDENTIFICADOR (preco) encontrado na linha 3
+Token: OP_SOMA (+) encontrado na linha 3
+Token: IDENTIFICADOR (taxa) encontrado na linha 3
+Erro lexico: caractere invalido '$' na linha 3
+Token: PONTO_VIRGULA (;) encontrado na linha 3
+Token: IDENTIFICADOR (nome_arquivo) encontrado na linha 4
+Token: ATRIBUICAO (=) encontrado na linha 4
+Erro lexico: caractere invalido '"' na linha 4
+Token: IDENTIFICADOR (dados) encontrado na linha 4
+Token: PONTO (.) encontrado na linha 4
+Token: IDENTIFICADOR (txt) encontrado na linha 4
+Erro lexico: caractere invalido '"' na linha 4
+Erro lexico: caractere invalido '!' na linha 4
+Token: PONTO_VIRGULA (;) encontrado na linha 4
+Token: IDENTIFICADOR (a) encontrado na linha 5
+Erro lexico: caractere invalido '&' na linha 5
+Token: IDENTIFICADOR (b) encontrado na linha 5
+Token: PONTO_VIRGULA (;) encontrado na linha 5
+
+
+==============================
+Rodando teste: input3.txt
+==============================
+Comentario ignorado na linha 1
+Token: NUM_INTEIRO (99) encontrado na linha 2
+Token: IDENTIFICADOR (identificador) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: NUM_INTEIRO (10) encontrado na linha 2
+Token: PONTO_VIRGULA (;) encontrado na linha 2
+Token: IDENTIFICADOR (taxa) encontrado na linha 3
+Token: ATRIBUICAO (=) encontrado na linha 3
+Token: PONTO (.) encontrado na linha 3
+Token: NUM_INTEIRO (85) encontrado na linha 3
+Token: PONTO_VIRGULA (;) encontrado na linha 3
+Token: IDENTIFICADOR (margem) encontrado na linha 4
+Token: ATRIBUICAO (=) encontrado na linha 4
+Token: NUM_INTEIRO (90) encontrado na linha 4
+Token: PONTO (.) encontrado na linha 4
+Token: PONTO_VIRGULA (;) encontrado na linha 4
+Token: IDENTIFICADOR (calculo) encontrado na linha 5
+Token: ATRIBUICAO (=) encontrado na linha 5
+Token: NUM_INTEIRO (100) encontrado na linha 5
+Token: OP_SOMA (+) encontrado na linha 5
+Token: NUM_INTEIRO (200) encontrado na linha 5
+Token: OP_MULT (*) encontrado na linha 5
+Token: NUM_INTEIRO (300) encontrado na linha 5
+Token: OP_DIV (/) encontrado na linha 5
+Token: NUM_INTEIRO (400) encontrado na linha 5
+Token: OP_SUB (-) encontrado na linha 5
+Token: NUM_INTEIRO (500) encontrado na linha 5
+Token: PONTO_VIRGULA (;) encontrado na linha 5
+
+
+==============================
+Rodando teste: input4.txt
+==============================
+Comentario ignorado na linha 1
+Token: IDENTIFICADOR (que) encontrado na linha 1
+Token: IDENTIFICADOR (vai) encontrado na linha 1
+Token: IDENTIFICADOR (gerar) encontrado na linha 1
+Token: IDENTIFICADOR (erro) encontrado na linha 1
+Erro lexico: caractere invalido ']' na linha 1
+Token: IDENTIFICADOR (x) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: NUM_INTEIRO (10) encontrado na linha 2
+Token: PONTO_VIRGULA (;) encontrado na linha 2
+Comentario ignorado na linha 3
+
+
+==============================
+Rodando teste: input5.txt
+==============================
+Comentario ignorado na linha 1
+Token: IDENTIFICADOR (se) encontrado na linha 2
+Token: ABRE_PARENTESE (() encontrado na linha 2
+Token: IDENTIFICADOR (contador) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: ATRIBUICAO (=) encontrado na linha 2
+Token: NUM_INTEIRO (10) encontrado na linha 2
+Token: FECHA_PARENTESE ()) encontrado na linha 2
+Token: ABRE_CHAVE ({) encontrado na linha 2
+Erro lexico: caractere invalido 'Ã' na linha 3
+Erro lexico: caractere invalido '­' na linha 3
+Token: IDENTIFICADOR (ndice) encontrado na linha 3
+Token: ATRIBUICAO (=) encontrado na linha 3
+Erro lexico: caractere invalido 'Ã' na linha 3
+Erro lexico: caractere invalido '­' na linha 3
+Token: IDENTIFICADOR (ndice) encontrado na linha 3
+Token: OP_SOMA (+) encontrado na linha 3
+Token: OP_SOMA (+) encontrado na linha 3
+Token: PONTO_VIRGULA (;) encontrado na linha 3
+Token: FECHA_CHAVE (}) encontrado na linha 4
+Token: IDENTIFICADOR (m) encontrado na linha 5
+Erro lexico: caractere invalido 'Ã' na linha 5
+Erro lexico: caractere invalido '©' na linha 5
+Token: IDENTIFICADOR (dia_final) encontrado na linha 5
+Token: DOIS_PONTOS (:) encontrado na linha 5
+Token: NUM_REAL (7.5) encontrado na linha 5
+Token: PONTO_VIRGULA (;) encontrado na linha 5
+
+

@@ -1,0 +1,8 @@
+[Este e um comentario de teste ignorado pelo analisador]
+identificador_1 = 100;
+taxa : 4.50 .
+total = identificador_1 * taxa;
+
+{
+  ( outro_teste_aqui )
+}
