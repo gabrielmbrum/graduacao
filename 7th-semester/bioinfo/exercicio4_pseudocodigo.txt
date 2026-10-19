@@ -1,0 +1,64 @@
+======================================================================
+EXERCÍCIO 4: Pseudocódigo para Alinhamento Global (Needleman-Wunsch)
+======================================================================
+
+Opção Escolhida: (a) Programação Dinâmica (Needleman-Wunsch)
+
+Algoritmo NeedlemanWunsch(SeqA, SeqB, S_match, S_mismatch, d_gap)
+    Input: 
+        SeqA: String de tamanho n
+        SeqB: String de tamanho m
+        S_match: Pontuação para correspondência (ex: +1)
+        S_mismatch: Penalidade para desalinhamento (ex: -1)
+        d_gap: Penalidade por introdução de gap (ex: -1)
+    Output:
+        Matriz de pontuação F preenchida e caminhos de Alinhamento
+
+    // 1. Inicialização da Matriz de tamanho (n+1) x (m+1)
+    Criar matriz F de dimensões (n+1) x (m+1)
+    
+    F[0][0] = 0
+    Para i de 1 até n:
+        F[i][0] = i * d_gap
+    Para j de 1 até m:
+        F[0][j] = j * d_gap
+
+    // 2. Preenchimento da Matriz (Programação Dinâmica)
+    Para i de 1 até n:
+        Para j de 1 até m:
+            // Calcular score de substituição/match
+            Se SeqA[i-1] == SeqB[j-1]:
+                score_sub = S_match
+            Senão:
+                score_sub = S_mismatch
+            
+            // Escolha do caminho ótimo (origens: diagonal, cima, esquerda)
+            match_diagonal = F[i-1][j-1] + score_sub
+            gap_cima       = F[i-1][j] + d_gap
+            gap_esquerda   = F[i][j-1] + d_gap
+            
+            F[i][j] = Máximo(match_diagonal, gap_cima, gap_esquerda)
+
+    // 3. Rastreamento (Traceback) para construir o alinhamento
+    AlinhamentoA = ""
+    AlinhamentoB = ""
+    i = n
+    j = m
+
+    Enquanto i > 0 ou j > 0:
+        Se i > 0 e j > 0 e (F[i][j] == F[i-1][j-1] + score_sub_calculado_para(i,j)):
+            AlinhamentoA = SeqA[i-1] + AlinhamentoA
+            AlinhamentoB = SeqB[j-1] + AlinhamentoB
+            i = i - 1
+            j = j - 1
+        Senão se i > 0 e (F[i][j] == F[i-1][j] + d_gap):
+            AlinhamentoA = SeqA[i-1] + AlinhamentoA
+            AlinhamentoB = "-" + AlinhamentoB
+            i = i - 1
+        Senão:
+            AlinhamentoA = "-" + AlinhamentoA
+            AlinhamentoB = SeqB[j-1] + AlinhamentoB
+            j = j - 1
+
+    Retornar F[n][m], AlinhamentoA, AlinhamentoB
+FimAlgoritmo

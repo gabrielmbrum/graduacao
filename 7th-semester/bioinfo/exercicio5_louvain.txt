@@ -1,0 +1,71 @@
+======================================================================
+EXERCÍCIO 5: Pseudocódigo do Algoritmo de Louvain para Comunidades
+======================================================================
+
+Algoritmo Louvain_PPI(Rede_PPI)
+    Input: Rede_PPI representada como lista de adjacência (Nós V, Arestas E)
+    Output: Atribuição final de comunidades para cada nó da rede
+
+    Rede_Atual = Rede_PPI
+    Mudança_Modularidade = Verdadeiro
+
+    Enquanto Mudança_Modularidade for Verdadeiro:
+        
+        // --- PASSO 1: INICIALIZAÇÃO DAS COMUNIDADES ---
+        Para cada nó i em Rede_Atual.V:
+            Comunidade[i] = i  // Cada nó começa em sua própria comunidade única
+        
+        Melhoria_Local = Verdadeiro
+        
+        // --- PASSO 2: OTIMIZAÇÃO LOCAL DA MODULARIDADE ---
+        Enquanto Melhoria_Local for Verdadeiro:
+            Melhoria_Local = Falso
+            
+            Para cada nó i em Rede_Atual.V:
+                Comunidade_Original = Comunidade[i]
+                Melhor_Delta_Q = 0
+                Melhor_Comunidade = Comunidade_Original
+                
+                // Avaliar vizinhos do nó i
+                Para cada vizinho j de i em Rede_Atual.Adjacentes(i):
+                    Comunidade_Vizinho = Comunidade[j]
+                    
+                    Se Comunidade_Vizinho != Comunidade_Original:
+                        // SIMULAÇÃO DO CÁLCULO DE MODULARIDADE
+                        // Calcula o ganho de modularidade (Delta_Q) se 'i' for movido para Comunidade_Vizinho
+                        // Formula teórica: Delta_Q = [K_i,in / 2m] - [Sigma_tot * K_i / 2m^2]
+                        Delta_Q = Calcular_Ganho_Modularidade(Rede_Atual, i, Comunidade_Vizinho)
+                        
+                        Se Delta_Q > Melhor_Delta_Q:
+                            Melhor_Delta_Q = Delta_Q
+                            Melhor_Comunidade = Comunidade_Vizinho
+                
+                // Mover o nó se houver ganho real de modularidade
+                Se Melhor_Delta_Q > 0:
+                    Comunidade[i] = Melhor_Comunidade
+                    Melhoria_Local = Verdadeiro
+        
+        // --- PASSO 3: AGREGAÇÃO DA REDE (CONSTRUÇÃO DE SUPERNÓS) ---
+        Novas_Comunidades_Identificadas = Obter_Comunidades_Unicas(Comunidade)
+        
+        // Se nenhuma comunidade foi fundida, interrompe o processo global
+        Se Número_De_Elementos(Novas_Comunidades_Identificadas) == Número_De_Elementos(Rede_Atual.V):
+            Mudança_Modularidade = Falso
+        Senão:
+            // Construir nova rede onde cada comunidade vira um supernó
+            Nova_Rede = Criar_Rede_Vazia()
+            
+            Para cada C em Novas_Comunidades_Identificadas:
+                Nova_Rede.Adicionar_SuperNó(C)
+            
+            // Mapear pesos das arestas entre supernós e laços internos (self-loops)
+            Para cada aresta (u, v) original com peso w:
+                C_u = Comunidade[u]
+                C_v = Comunidade[v]
+                Nova_Rede.Adicionar_Ou_Incrementar_Peso_Aresta(C_u, C_v, w)
+            
+            // Atualiza a rede para a próxima iteração hierárquica
+            Rede_Atual = Nova_Rede
+
+    Retornar Mapeamento_Final_De_Nós_Para_Comunidades(Comunidade)
+FimAlgoritmo

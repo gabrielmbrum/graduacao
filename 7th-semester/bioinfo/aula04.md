@@ -1,7 +1,8 @@
 ## 1. Redes Complexas e Interação Proteína-Proteína (PPI)
 A bioinformática utiliza grafos para modelar proteínas como nós e suas interações físicas ou funcionais como arestas.
 * **Análise Topológica:** Focada na identificação de *hubs* (proteínas altamente conectadas, frequentemente essenciais ou associadas a patologias) e na detecção de comunidades (agrupamentos que indicam complexos proteicos ou vias metabólicas).
-* **Algoritmos de Detecção de Comunidades:** * **Louvain:** Método hierárquico que particiona a rede iterativamente para maximizar a modularidade ($Q$), uma métrica que compara a densidade de conexões internas com uma distribuição aleatória.
+* **Algoritmos de Detecção de Comunidades:**  
+	* **Louvain:** Método hierárquico que particiona a rede iterativamente para maximizar a modularidade ($Q$), uma métrica que compara a densidade de conexões internas com uma distribuição aleatória.
     * **Leiden:** Uma evolução do Louvain que corrige problemas de instabilidade e otimização prematura. Ele exige que as comunidades tenham forte densidade de conectividade interna ($D(C_k)$) antes de fundir os nós, evitando partições desconectadas.
     * **Outros:** *PageRank*, Dijkstra, Adamic-Adar e *Graph Neural Networks* (GNNs), utilizando bibliotecas como NetworkX e DGL (*Deep Graph Library*).
 

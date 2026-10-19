@@ -1,0 +1,27 @@
+BIOINFORMÁTICA & MEDICINA PERSONALIZADA: APLICAÇÕES CLÍNICAS ATUAIS
+
+1. INTRODUÇÃO
+   - Transição do modelo médico tradicional para a Medicina de Precisão.
+   - O papel da Bioinformática como ponte entre dados biológicos e decisões clínicas.
+
+2. FUNDAMENTACAO TEORICA
+
+3. CENÁRIO ATUAL
+   - A era ômica multimodal (Genômica, Transcriptômica e Farmacogenômica).
+   - Entrada da Patologia Computacional e da Transcriptômica Espacial.
+   - Desafios: Custos, infraestrutura de dados e explicabilidade das IAs.
+
+4. FOCO NA APLICAÇÃO 1: ONCOLOGIA DE PRECISÃO & PATOLOGIA COMPUTACIONAL
+   - Integração Multimodal: Visão Computacional (Lâminas WSI) + Bioinformática (RNA-Seq/DNA).
+   - Modelos de referência na literatura (ex: MCAT/PORPOISE).
+   - Impacto Clínico: Identificação de mutações, previsão de sobrevida e resposta a imunoterapias.
+
+5. FOCO NA APLICAÇÃO 2: FARMACOGENÔMICA & DESIGN DE FÁRMACOS COM IA
+   - Perfis genéticos e variabilidade individual na metabolização de medicamentos.
+   - Predição de estruturas 3D de proteínas (AlphaFold) para alvos terapêuticos personalizados.
+   - Redução de reações adversas e seleção do tratamento ideal.
+
+6. CONCLUSÃO
+   - Síntese da bioinformática como pilar indispensável da prática médica moderna.
+   - Perspectivas futuras: Integração em tempo real nos prontuários e medicina preventiva.
+   - Considerações finais sobre a colaboração entre IA, Bioinformática e corpo médico.

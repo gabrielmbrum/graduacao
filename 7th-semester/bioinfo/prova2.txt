@@ -1,0 +1,19 @@
+Gabriel Martins Brum
+
+Prova Bioinformática 2026
+
+Respostas: 
+
+Questão 1 --> ALternativa C - Alinhamento global de sequências.
+
+Questão 2 --> Alternativa B - Inferir similaridades estruturais ou funcionais entre múltiplas sequências.
+
+Questão 3 --> Alternativa C - Detectar comunidades ou módulos funcionais.
+
+Questão 4 --> Alternativa 
+
+Questão 5 --> Alternativa 
+
+Questão 6 --> Alternativa 
+
+Questão 7 --> Alternativa 

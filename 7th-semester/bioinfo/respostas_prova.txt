@@ -1,0 +1,174 @@
+PROVA DE BIOCOMPUTAÇÃO / BIOINFORMÁTICA
+Aluno(a): Gabriel Martins Brum
+
+======================================================================
+RESPOSTAS DOS EXERCÍCIOS TEÓRICOS (1, 2 e 3)
+======================================================================
+(Exercício 1) Resposta: c) Alinhamento global de sequências.
+(Exercício 2) Resposta: b) Inferir similaridades estruturais ou funcionais entre múltiplas sequências.
+(Exercício 3) Resposta: c) Detectar comunidades ou módulos funcionais.
+
+======================================================================
+EXERCÍCIO 4: Pseudocódigo para Alinhamento Global (Needleman-Wunsch)
+======================================================================
+
+Opção Escolhida: (a) Programação Dinâmica (Needleman-Wunsch)
+
+Algoritmo NeedlemanWunsch(SeqA, SeqB, S_match, S_mismatch, d_gap)
+    Input: 
+        SeqA: String de tamanho n
+        SeqB: String de tamanho m
+        S_match: Pontuação para correspondência (ex: +1)
+        S_mismatch: Penalidade para desalinhamento (ex: -1)
+        d_gap: Penalidade por introdução de gap (ex: -1)
+    Output:
+        Matriz de pontuação F preenchida e caminhos de Alinhamento
+
+    // 1. Inicialização da Matriz de tamanho (n+1) x (m+1)
+    Criar matriz F de dimensões (n+1) x (m+1)
+    
+    F[0][0] = 0
+    Para i de 1 até n:
+        F[i][0] = i * d_gap
+    Para j de 1 até m:
+        F[0][j] = j * d_gap
+
+    // 2. Preenchimento da Matriz (Programação Dinâmica)
+    Para i de 1 até n:
+        Para j de 1 até m:
+            // Calcular score de substituição/match
+            Se SeqA[i-1] == SeqB[j-1]:
+                score_sub = S_match
+            Senão:
+                score_sub = S_mismatch
+            
+            // Escolha do caminho ótimo (origens: diagonal, cima, esquerda)
+            match_diagonal = F[i-1][j-1] + score_sub
+            gap_cima       = F[i-1][j] + d_gap
+            gap_esquerda   = F[i][j-1] + d_gap
+            
+            F[i][j] = Máximo(match_diagonal, gap_cima, gap_esquerda)
+
+    // 3. Rastreamento (Traceback) para construir o alinhamento
+    AlinhamentoA = ""
+    AlinhamentoB = ""
+    i = n
+    j = m
+
+    Enquanto i > 0 ou j > 0:
+        Se i > 0 e j > 0 e (F[i][j] == F[i-1][j-1] + score_sub_calculado_para(i,j)):
+            AlinhamentoA = SeqA[i-1] + AlinhamentoA
+            AlinhamentoB = SeqB[j-1] + AlinhamentoB
+            i = i - 1
+            j = j - 1
+        Senão se i > 0 e (F[i][j] == F[i-1][j] + d_gap):
+            AlinhamentoA = SeqA[i-1] + AlinhamentoA
+            AlinhamentoB = "-" + AlinhamentoB
+            i = i - 1
+        Senão:
+            AlinhamentoA = "-" + AlinhamentoA
+            AlinhamentoB = SeqB[j-1] + AlinhamentoB
+            j = j - 1
+
+    Retornar F[n][m], AlinhamentoA, AlinhamentoB
+FimAlgoritmo
+
+
+======================================================================
+EXERCÍCIO 5: Pseudocódigo do Algoritmo de Louvain para Comunidades
+======================================================================
+
+Algoritmo Louvain_PPI(Rede_PPI)
+    Input: Rede_PPI representada como lista de adjacência (Nós V, Arestas E)
+    Output: Atribuição final de comunidades para cada nó da rede
+
+    Rede_Atual = Rede_PPI
+    Mudança_Modularidade = Verdadeiro
+
+    Enquanto Mudança_Modularidade for Verdadeiro:
+        
+        // --- PASSO 1: INICIALIZAÇÃO DAS COMUNIDADES ---
+        Para cada nó i em Rede_Atual.V:
+            Comunidade[i] = i  // Cada nó começa em sua própria comunidade única
+        
+        Melhoria_Local = Verdadeiro
+        
+        // --- PASSO 2: OTIMIZAÇÃO LOCAL DA MODULARIDADE ---
+        Enquanto Melhoria_Local for Verdadeiro:
+            Melhoria_Local = Falso
+            
+            Para cada nó i em Rede_Atual.V:
+                Comunidade_Original = Comunidade[i]
+                Melhor_Delta_Q = 0
+                Melhor_Comunidade = Comunidade_Original
+                
+                // Avaliar vizinhos do nó i
+                Para cada vizinho j de i em Rede_Atual.Adjacentes(i):
+                    Comunidade_Vizinho = Comunidade[j]
+                    
+                    Se Comunidade_Vizinho != Comunidade_Original:
+                        // SIMULAÇÃO DO CÁLCULO DE MODULARIDADE
+                        // Calcula o ganho de modularidade (Delta_Q) se 'i' for movido para Comunidade_Vizinho
+                        // Formula teórica: Delta_Q = [K_i,in / 2m] - [Sigma_tot * K_i / 2m^2]
+                        Delta_Q = Calcular_Ganho_Modularidade(Rede_Atual, i, Comunidade_Vizinho)
+                        
+                        Se Delta_Q > Melhor_Delta_Q:
+                            Melhor_Delta_Q = Delta_Q
+                            Melhor_Comunidade = Comunidade_Vizinho
+                
+                // Mover o nó se houver ganho real de modularidade
+                Se Melhor_Delta_Q > 0:
+                    Comunidade[i] = Melhor_Comunidade
+                    Melhoria_Local = Verdadeiro
+        
+        // --- PASSO 3: AGREGAÇÃO DA REDE (CONSTRUÇÃO DE SUPERNÓS) ---
+        Novas_Comunidades_Identificadas = Obter_Comunidades_Unicas(Comunidade)
+        
+        // Se nenhuma comunidade foi fundida, interrompe o processo global
+        Se Número_De_Elementos(Novas_Comunidades_Identificadas) == Número_De_Elementos(Rede_Atual.V):
+            Mudança_Modularidade = Falso
+        Senão:
+            // Construir nova rede onde cada comunidade vira um supernó
+            Nova_Rede = Criar_Rede_Vazia()
+            
+            Para cada C em Novas_Comunidades_Identificadas:
+                Nova_Rede.Adicionar_SuperNó(C)
+            
+            // Mapear pesos das arestas entre supernós e laços internos (self-loops)
+            Para cada aresta (u, v) original com peso w:
+                C_u = Comunidade[u]
+                C_v = Comunidade[v]
+                Nova_Rede.Adicionar_Ou_Incrementar_Peso_Aresta(C_u, C_v, w)
+            
+            // Atualiza a rede para a próxima iteração hierárquica
+            Rede_Atual = Nova_Rede
+
+    Retornar Mapeamento_Final_De_Nós_Para_Comunidades(Comunidade)
+FimAlgoritmo
+
+
+======================================================================
+EXERCÍCIO 6: Explicação Detalhada da Heurística Desenvolvida
+======================================================================
+
+Descrição da Heurística: Block Composition Filtering (BCF)
+
+A estratégia desenvolvida baseia-se na filtragem prévia através da análise de composição de caracteres (frequência absoluta de nucleotídeos ou aminoácidos) em blocos de tamanho fixo, em vez de buscar correspondências de strings exatas (como as palavras/K-mers de tamanho fixo do BLAST tradicional).
+
+Pseudocódigo da Heurística:
+1. Dividir a Sequência A em blocos não-sobrepostos de tamanho K (ex: K=4).
+2. Para cada bloco, calcular um dicionário/vetor de contagem com a frequência de seus elementos.
+3. Deslizar uma janela de tamanho K sobre a Sequência B.
+4. Calcular a composição da janela da Sequência B e medir a distância absoluta em relação ao bloco da Sequência A.
+5. Se a distância de composição for menor ou igual ao limiar definido (permitindo similaridade de caracteres independente de estarem ordenados perfeitamente), marcar as coordenadas (i, j) como uma SEMENTE CANDIDATA.
+6. Para cada Semente Candidata, realizar uma extensão local (linear) bidirecional computando as pontuações de Match e Mismatch.
+7. Interromper a extensão caso a pontuação acumulada decresça abaixo de um limite X (estratégia X-drop).
+8. Filtrar e retornar os alinhamentos locais que obtiveram pontuação positiva.
+
+Por que reduz o custo computacional?
+O alinhamento local exato usando Programação Dinâmica tradicional (Smith-Waterman) possui complexidade de tempo O(N * M), o que se torna proibitivo para bancos de dados genômicos em larga escala. A heurística BCF reduz drasticamente esse custo pelos seguintes fatores:
+1. Divisão em Blocos Não-Sobrepostos na Seq A: Reduz o número de iterações externas por um fator de K.
+2. Filtro de Composição de Baixo Custo: A comparação de histogramas de frequência é uma operação aritmética simples de complexidade O(K), evitando comparações par a par custosas.
+3. Descarte Precoce de Regiões Frias: Mais de 90% das matrizes de comparação de sequências não correlacionadas são descartadas imediatamente no filtro de blocos, fazendo com que a extensão local (que gasta mais processamento) seja executada somente nas poucas regiões com real promessa biológica de similaridade.
+
+* O código Python completo e funcional correspondente a esta heurística encontra-se no arquivo separado 'exercicio6_heuristica.py' contido neste pacote zip.
