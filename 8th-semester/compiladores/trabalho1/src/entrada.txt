@@ -1,0 +1,9 @@
+[Arquivo de entrada sem erros lexicos testando todos os tokens da linguagem]
+identificador_1 = 100;
+taxa : 4.50 .
+lista_valores : 10, 20, 30.5;
+total = (identificador_1 + 50 - 10) * taxa / 2;
+
+{
+  ( resultado_final = total )
+}
